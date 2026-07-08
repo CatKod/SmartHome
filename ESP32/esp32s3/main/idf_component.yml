@@ -1,0 +1,5 @@
+# Tu ESP-IDF v6.0, esp-mqtt duoc chuyen sang Component Manager,
+# phai khai bao dependency o day (idf.py se tu tai ve khi build).
+dependencies:
+  espressif/mqtt: "*"
+  idf: ">=6.0"

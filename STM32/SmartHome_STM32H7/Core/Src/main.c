@@ -26,17 +26,31 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+/**
+ * @brief Du lieu cam bien (gia lap o Giai doan 1).
+ *        temp_x10: nhiet do x10 (vd: 275 = 27.5 do C) de tranh dung %f
+ *        (printf float mac dinh bi tat voi newlib-nano).
+ */
+typedef struct
+{
+  int16_t temp_x10;   /* Nhiet do x10 [0.1 do C] */
+  uint8_t humi;       /* Do am [%]               */
+  uint8_t light;      /* Trang thai anh sang 0/1 */
+  uint8_t motion;     /* Trang thai chuyen dong 0/1 */
+} SensorData_t;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define FRAME_STX            0x02U   /* Start of Text */
+#define FRAME_ETX            0x03U   /* End of Text   */
+#define SENSOR_PERIOD_MS     1000U   /* Chu ky gui du lieu */
+#define UART3_TX_BUF_LEN     64U
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -47,19 +61,83 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+static uint8_t  uart3_tx_buf[UART3_TX_BUF_LEN];   /* Buffer TX rieng cho ngat */
+static volatile uint8_t uart3_tx_busy = 0;        /* Co bao UART dang truyen  */
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MPU_Config(void);
 /* USER CODE BEGIN PFP */
-
+static void Sensor_ReadFake(SensorData_t *data);
+static void Sensor_SendFrame(const SensorData_t *data);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+/**
+ * @brief  Gia lap viec doc cam bien. Giai doan sau se thay bang driver
+ *         DHT11 / ADC / PIR that.
+ */
+static void Sensor_ReadFake(SensorData_t *data)
+{
+  static int16_t temp_x10 = 250;   /* Bat dau tu 25.0 do C */
+  static uint8_t humi     = 60;
+  static uint8_t tick     = 0;
 
+  /* Tao du lieu dao dong nhe cho giong that */
+  temp_x10 += (tick % 4 < 2) ? 3 : -3;      /* +/- 0.3 do C */
+  humi     += (tick % 6 < 3) ? 1 : -1;      /* +/- 1 %      */
+  tick++;
+
+  data->temp_x10 = temp_x10;
+  data->humi     = humi;
+  data->light    = (tick / 5U) % 2U;        /* Doi trang thai moi 5 giay */
+  data->motion   = (tick / 8U) % 2U;        /* Doi trang thai moi 8 giay */
+}
+
+/**
+ * @brief  Dong goi frame <STX>Temp,Humi,Light,Motion<ETX> va gui qua USART3
+ *         bang ngat (non-blocking).
+ *         Vi du frame: <0x02>27.5,65,1,0<0x03>
+ */
+static void Sensor_SendFrame(const SensorData_t *data)
+{
+  /* Bo qua chu ky nay neu lan truyen truoc chua xong (khong ghi de buffer) */
+  if (uart3_tx_busy)
+  {
+    return;
+  }
+
+  int len = snprintf((char *)uart3_tx_buf, UART3_TX_BUF_LEN,
+                     "%c%d.%d,%u,%u,%u%c",
+                     FRAME_STX,
+                     data->temp_x10 / 10, (data->temp_x10 < 0 ? -data->temp_x10 : data->temp_x10) % 10,
+                     (unsigned)data->humi,
+                     (unsigned)data->light,
+                     (unsigned)data->motion,
+                     FRAME_ETX);
+
+  if (len > 0 && len < (int)UART3_TX_BUF_LEN)
+  {
+    uart3_tx_busy = 1;
+    if (HAL_UART_Transmit_IT(&huart3, uart3_tx_buf, (uint16_t)len) != HAL_OK)
+    {
+      uart3_tx_busy = 0;   /* Truyen that bai, cho phep thu lai chu ky sau */
+    }
+  }
+}
+
+/**
+ * @brief  Callback khi UART truyen xong (goi tu HAL_UART_IRQHandler).
+ */
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+{
+  if (huart->Instance == USART3)
+  {
+    uart3_tx_busy = 0;
+  }
+}
 /* USER CODE END 0 */
 
 /**
@@ -101,13 +179,22 @@ int main(void)
   MX_UART4_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  SensorData_t sensor_data;
+  uint32_t last_send_tick = HAL_GetTick();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    /* Gui du lieu dinh ky, khong dung HAL_Delay de khong chan CPU */
+    if ((HAL_GetTick() - last_send_tick) >= SENSOR_PERIOD_MS)
+    {
+      last_send_tick += SENSOR_PERIOD_MS;
+
+      Sensor_ReadFake(&sensor_data);
+      Sensor_SendFrame(&sensor_data);
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

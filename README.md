@@ -15,7 +15,7 @@ Hệ thống được thiết kế theo dạng module, cho phép tích hợp và
 
 ### 2. An toàn & Phòng chống thiên tai, sự cố
 * **Phát hiện rò rỉ khí Gas/Khói:** Sử dụng cảm biến **MQ-2** để giám sát nguy cơ cháy nổ từ bếp Gas hoặc chập điện.
-* **Phát hiện lửa (Flame Sensor):** Sử dụng cảm biến hồng ngoại phát hiện bước sóng của ngọn lửa nhằm đưa ra cảnh báo hỏa hoạn sớm nhất.
+* **Phát hiện lửa:** Sử dụng cảm biến hồng ngoại phát hiện bước sóng của ngọn lửa nhằm đưa ra cảnh báo hỏa hoạn sớm nhất.
 * **Phát hiện ngập nước / Trời mưa:** Sử dụng cảm biến **Rain Sensor** hoặc cảm biến mực nước ở ban công/phòng giặt để tự động đóng cửa sổ hoặc kéo rèm khi trời mưa.
 
 ### 3. An ninh & Kiểm soát ra vào
@@ -25,13 +25,13 @@ Hệ thống được thiết kế theo dạng module, cho phép tích hợp và
 
 ### 4. Tự động hoá & Điều khiển thiết bị
 * Điều khiển đóng/ngắt các thiết bị công suất cao như **Đèn**, **Quạt**, **Bơm nước** thông qua cụm **Module Relay**.
-* **Chế độ Tự động (Auto):** Hệ thống tự đưa ra quyết định dựa trên dữ liệu từ các cảm biến trên (Ví dụ: Trời tối tự bật đèn, rò rỉ gas tự bật quạt hút mùi, trời mưa tự đóng rèm cửa).
-* **Chế độ Thủ công (Manual):** Cho phép người dùng can thiệp trực tiếp bất cứ lúc nào thông qua nút bấm vật lý hoặc các nút chạm cảm ứng trên màn hình LCD.
+* **Chế độ Tự động:** Hệ thống tự đưa ra quyết định dựa trên dữ liệu từ các cảm biến trên (Ví dụ: Trời tối tự bật đèn, rò rỉ gas tự bật quạt hút mùi, trời mưa tự đóng rèm cửa).
+* **Chế độ Thủ công:** Cho phép người dùng can thiệp trực tiếp bất cứ lúc nào thông qua nút bấm vật lý hoặc các nút chạm cảm ứng trên màn hình LCD.
 
 ### 5. Kết nối & Cảnh báo
 * **Hiển thị tại chỗ:** Toàn bộ thông số môi trường và trạng thái On/Off của thiết bị được hiển thị trực quan trên màn hình LCD/Touch (TouchGFX của STM32).
 * **Cảnh báo tức thời:** Tích hợp còi **Buzzer** và hệ thống **LED báo động** để kích hoạt âm thanh/ánh sáng lập tức khi xảy ra sự cố nguy hiểm (phát hiện có người đột nhập hoặc rò rỉ khí gas).
-* **Kết nối đám mây (Cloud):** Sử dụng giao thức **MQTT** hoặc **HTTP** để đồng bộ dữ liệu thời gian thực và nhận lệnh điều khiển từ Web Server hoặc Ứng dụng điện thoại.
+* **Kết nối đám mây:** Sử dụng giao thức **MQTT** hoặc **HTTP** để đồng bộ dữ liệu thời gian thực và nhận lệnh điều khiển từ Web Server hoặc Ứng dụng điện thoại.
 
 ---
 
@@ -39,12 +39,38 @@ Hệ thống được thiết kế theo dạng module, cho phép tích hợp và
 
 | Thành phần | Linh kiện khuyến nghị | Chức năng |
 | :--- | :--- | :--- |
-| **Khối xử lý trung tâm (Hub)** | STM32F429I-DISCO | Thu thập dữ liệu tổng, quản lý giao diện màn hình chính |
-| **Khối kết nối ngoại vi (Node)** | ESP32 WROOM / NodeMCU | Đọc cảm biến, kích relay và truyền nhận dữ liệu qua Wi-Fi |
+| **Khối xử lý trung tâm** | STM32F429I-DISCO | Thu thập dữ liệu tổng, quản lý giao diện màn hình chính |
+| **Khối kết nối ngoại vi** | ESP32 WROOM / NodeMCU | Đọc cảm biến, kích relay và truyền nhận dữ liệu qua Wi-Fi |
 | **Khối cảm biến mở rộng** | DHT11/22, LDR, PIR, MQ-2, Flame, Rain, Má từ | Thu thập dữ liệu môi trường, an ninh và an toàn cháy nổ diện rộng |
 | **Khối cơ cấu chấp hành** | Module Relay 4-Channel, Buzzer, Servo | Đóng cắt thiết bị, phát âm thanh cảnh báo, giả lập đóng mở cửa |
 
 ---
+
+## DANH SÁCH CẢM BIẾN VÀ LINH KIỆN HỆ THỐNG
+
+| Tên cảm biến / Linh kiện | Mã linh kiện (Model) | Giao thức / Chuẩn kết nối | Chức năng trong hệ thống |
+| :--- | :--- | :--- | :--- |
+| **1. Môi trường & Sức khỏe** | | | | 
+| Cảm biến Nhiệt độ & Độ ẩm | **DHT11 / DHT22** | Single-Wire (Digital) | Theo dõi chất lượng, nhiệt độ, độ ẩm không khí trong phòng. |
+| Cảm biến Ánh sáng (Quang trở) | **LDR (GL5516)** | Analog (ADC) / Digital | Nhận biết trạng thái sáng/tối để tự động hóa bật tắt đèn. |
+| Cảm biến Cường độ ánh sáng | **BH1750 / GY-302** | I2C (Digital) | Đo chính xác cường độ rọi ánh sáng môi trường theo đơn vị Lux. |
+| Cảm biến Chất lượng không khí | **MQ-135** | Analog (ADC) / Digital | Đo nồng độ khí CO2, các khí độc để cảnh báo ô nhiễm phòng kín. |
+| | | | |
+| **2. An toàn & Phòng chống sự cố** | | | |
+| Cảm biến Khói & Khí Gas | **MQ-2** | Analog (ADC) / Digital | Giám sát và phát hiện sớm nguy cơ rò rỉ khí gas hoặc khói chập điện. |
+| Cảm biến Phát hiện lửa | **Flame Sensor (HW-492)**| Analog (ADC) / Digital | Phát hiện bước sóng hồng ngoại của ngọn lửa để báo động hỏa hoạn. |
+| Cảm biến Mực nước / Nước mưa | **Rain Sensor (FC-37)** | Analog (ADC) / Digital | Phát hiện trời mưa hoặc ngập nước tại ban công, phòng giặt. |
+| | | | |
+| **3. An ninh & Kiểm soát ra vào** | | | | 
+| Cảm biến Chuyển động hồng ngoại | **HC-SR01 / HC-SR501**| Digital (High/Low) | Phát hiện có người di chuyển trong vùng cấm ở chế độ chống trộm. |
+| Cảm biến Má từ giám sát cửa | **Magnetic Switch (MC-38)**| Digital (Đóng/Mở mạch) | Phát hiện trạng thái cửa bị cạy mở trái phép hoặc chưa đóng. |
+| Cảm biến Siêu âm đo khoảng cách | **HC-SR04 / SRF05** | Trigger / Echo (Digital) | Đo khoảng cách vật cản, quét vùng tiếp cận hành lang an ninh. |
+| Khóa cửa thông minh / Đầu đọc thẻ| **RFID-RC522** | SPI (Digital) | Đọc UID của thẻ từ để xác thực quyền ra vào cửa. |
+| | | | |
+| **4. Cơ cấu chấp hành & Cảnh báo** | | | |
+| Mạch đóng ngắt nguồn cách ly | **Module Relay (SRD-05VDC)**| Digital (Kích mức Thấp/Cao)| Điều khiển đóng/ngắt nguồn điện cho Đèn, Quạt, Bơm nước. |
+| Còi báo động vật lý | **Active Buzzer 5V** | PWM / Digital | Phát ra âm thanh cảnh báo tần số cao khi xảy ra sự cố đột nhập, cháy nổ. |
+| Đèn chỉ thị trạng thái | **Hệ thống LED (5mm)** | Digital GPIO | Phát tín hiệu ánh sáng cảnh báo tức thời theo từng cấp độ nguy hiểm. |
 
 ## SƠ ĐỒ KIẾN TRÚC HỆ THỐNG
 

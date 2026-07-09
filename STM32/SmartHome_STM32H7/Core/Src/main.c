@@ -27,6 +27,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include "dht11.h"
+#include "light_sensor.h"
+#include "pir_sensor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -69,31 +72,36 @@ static volatile uint8_t uart3_tx_busy = 0;        /* Co bao UART dang truyen  */
 void SystemClock_Config(void);
 static void MPU_Config(void);
 /* USER CODE BEGIN PFP */
-static void Sensor_ReadFake(SensorData_t *data);
+static void Sensor_Read(SensorData_t *data);
 static void Sensor_SendFrame(const SensorData_t *data);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 /**
- * @brief  Gia lap viec doc cam bien. Giai doan sau se thay bang driver
- *         DHT11 / ADC / PIR that.
+ * @brief  Doc cam bien that: DHT11 (nhiet do/do am), LDR qua ADC1 (anh sang),
+ *         PIR SR505 (chuyen dong).
+ *         Neu DHT11 doc loi (nhieu, timeout, sai checksum) thi giu lai
+ *         gia tri hop le gan nhat thay vi gui du lieu rac.
  */
-static void Sensor_ReadFake(SensorData_t *data)
+static void Sensor_Read(SensorData_t *data)
 {
-  static int16_t temp_x10 = 250;   /* Bat dau tu 25.0 do C */
-  static uint8_t humi     = 60;
-  static uint8_t tick     = 0;
+  static int16_t last_temp_x10 = 0;
+  static uint8_t last_humi     = 0;
 
-  /* Tao du lieu dao dong nhe cho giong that */
-  temp_x10 += (tick % 4 < 2) ? 3 : -3;      /* +/- 0.3 do C */
-  humi     += (tick % 6 < 3) ? 1 : -1;      /* +/- 1 %      */
-  tick++;
+  int16_t temp_x10;
+  uint8_t humi;
 
-  data->temp_x10 = temp_x10;
-  data->humi     = humi;
-  data->light    = (tick / 5U) % 2U;        /* Doi trang thai moi 5 giay */
-  data->motion   = (tick / 8U) % 2U;        /* Doi trang thai moi 8 giay */
+  if (DHT11_Read(&temp_x10, &humi) == DHT11_OK)
+  {
+    last_temp_x10 = temp_x10;
+    last_humi     = humi;
+  }
+
+  data->temp_x10 = last_temp_x10;
+  data->humi     = last_humi;
+  data->light    = LightSensor_GetStatus();
+  data->motion   = PIR_GetMotion();
 }
 
 /**
@@ -179,6 +187,13 @@ int main(void)
   MX_UART4_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
+  DHT11_Init();
+  LightSensor_Init();
+  PIR_Init();
+
+  /* DHT11 can ~1 s on dinh sau khi cap dien truoc lan doc dau tien */
+  HAL_Delay(1000);
+
   SensorData_t sensor_data;
   uint32_t last_send_tick = HAL_GetTick();
   /* USER CODE END 2 */
@@ -192,7 +207,7 @@ int main(void)
     {
       last_send_tick += SENSOR_PERIOD_MS;
 
-      Sensor_ReadFake(&sensor_data);
+      Sensor_Read(&sensor_data);
       Sensor_SendFrame(&sensor_data);
     }
     /* USER CODE END WHILE */

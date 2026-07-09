@@ -26,7 +26,7 @@
 
 /* ==================== Wi-Fi ==================== */
 /* TODO: Dien thong tin Wi-Fi cua ban vao day */
-#define APP_WIFI_SSID           "I2_5G"
+#define APP_WIFI_SSID           "I2"
 #define APP_WIFI_PASSWORD       "abcd1232"
 #define APP_WIFI_MAX_RETRY      -1          /* -1 = retry vo han             */
 

@@ -48,6 +48,16 @@ HAL_StatusTypeDef LightSensor_ReadRaw(uint16_t *raw);
  */
 uint8_t LightSensor_GetStatus(void);
 
+/**
+ * @brief  Doc gia tri ADC tho va phan tram (0..100, cao = sang hon).
+ */
+uint8_t LightSensor_GetPercent(uint16_t *raw_out);
+
+/**
+ * @brief  4 muc: 0=DARK, 1=DIM, 2=NORMAL, 3=BRIGHT (co hysteresis).
+ */
+uint8_t LightSensor_GetLevel(void);
+
 #ifdef __cplusplus
 }
 #endif

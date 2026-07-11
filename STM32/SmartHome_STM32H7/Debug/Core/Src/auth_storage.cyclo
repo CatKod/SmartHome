@@ -1,0 +1,16 @@
+../Core/Src/auth_storage.c:28:17:Auth_Crc32	4
+../Core/Src/auth_storage.c:49:13:Auth_Defaults	1
+../Core/Src/auth_storage.c:58:13:Auth_Validate	4
+../Core/Src/auth_storage.c:72:13:Auth_PrepareSave	1
+../Core/Src/auth_storage.c:79:13:Auth_FlashEraseSector	2
+../Core/Src/auth_storage.c:100:13:Auth_FlashProgram	6
+../Core/Src/auth_storage.c:132:13:Auth_Save	2
+../Core/Src/auth_storage.c:144:6:AuthStorage_Init	3
+../Core/Src/auth_storage.c:158:6:AuthStorage_VerifyPin	4
+../Core/Src/auth_storage.c:167:6:AuthStorage_SetPin	4
+../Core/Src/auth_storage.c:178:6:AuthStorage_IsUidAuthorized	4
+../Core/Src/auth_storage.c:194:6:AuthStorage_AddUid	4
+../Core/Src/auth_storage.c:209:9:AuthStorage_GetUidCount	1
+../Core/Src/auth_storage.c:214:6:AuthStorage_IsLockedOut	4
+../Core/Src/auth_storage.c:231:6:AuthStorage_RegisterFailure	3
+../Core/Src/auth_storage.c:248:6:AuthStorage_ClearFailures	1

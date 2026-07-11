@@ -21,11 +21,27 @@
 /* Nguong phan biet bit: HIGH > 45 us => bit 1 (bit 0 ~28 us, bit 1 ~70 us) */
 #define DHT11_BIT_THRESHOLD_US   45U
 
-/* Timeout cho tung pha tin hieu (us), noi long hon spec de chiu sai so */
-#define DHT11_TIMEOUT_RESP_US    100U
+/* Timeout cho tung pha tin hieu (us), noi long hon spec de chiu sai so.
+   RESP de 200 us (spec 20..40 us + LOW 80 us) vi mot so hang nhai
+   phan hoi cham hon dang ke. */
+#define DHT11_TIMEOUT_RESP_US    200U
 #define DHT11_TIMEOUT_BIT_US     120U
 
 static uint32_t cycles_per_us = 550U;   /* Cap nhat lai theo SystemCoreClock */
+
+/* ---------------------------------------------------------------------------
+ * DEBUG (tam thoi): kiem chung timing va trang thai bus khi chan doan loi.
+ * Xem bang Live Expressions:
+ *   - dht11_dbg_cycles_per_us : ky vong 550 (SYSCLK 550 MHz).
+ *   - dht11_dbg_selftest_us   : DWT do lai HAL_Delay(50), ky vong
+ *                               50000..51000. Lech xa => thang do sai.
+ *   - dht11_dbg_idle_level    : muc bus ngay truoc tin hieu start.
+ *                               Ky vong 1; neu 0 => bus bi ghim LOW
+ *                               (sai chan, chap day, PB2 con noi vao bus).
+ * ------------------------------------------------------------------------- */
+volatile uint32_t dht11_dbg_cycles_per_us = 0;
+volatile uint32_t dht11_dbg_selftest_us   = 0;
+volatile uint8_t  dht11_dbg_idle_level    = 0xFF;
 
 /* ---------------------------------------------------------------------------
  * Tien ich thoi gian dua tren DWT cycle counter
@@ -52,23 +68,26 @@ static inline void Delay_us(uint32_t us)
 }
 
 /* ---------------------------------------------------------------------------
- * Truy cap bus DATA
+ * Truy cap bus DATA: mot chan duy nhat (DHT11_DATA_*, mac dinh PB1),
+ * output open-drain + pull-up.
+ * Ghi 0 = keo bus xuong, ghi 1 = nha bus (pull-up giu HIGH).
+ * IDR van phan anh muc thuc te tren chan ke ca trong che do output
+ * nen doc bus khong can chuyen mode.
  * ------------------------------------------------------------------------- */
 
 static inline void DHT11_BusLow(void)
 {
-  HAL_GPIO_WritePin(DHT11_GPIO_Output_GPIO_Port, DHT11_GPIO_Output_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(DHT11_DATA_GPIO_Port, DHT11_DATA_Pin, GPIO_PIN_RESET);
 }
 
 static inline void DHT11_BusRelease(void)
 {
-  /* PB2 la open-drain: ghi 1 = nha bus, dien tro keo len giu muc HIGH */
-  HAL_GPIO_WritePin(DHT11_GPIO_Output_GPIO_Port, DHT11_GPIO_Output_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(DHT11_DATA_GPIO_Port, DHT11_DATA_Pin, GPIO_PIN_SET);
 }
 
 static inline uint8_t DHT11_BusRead(void)
 {
-  return (HAL_GPIO_ReadPin(DHT11_GPIO_Input_GPIO_Port, DHT11_GPIO_Input_Pin) == GPIO_PIN_SET) ? 1U : 0U;
+  return (HAL_GPIO_ReadPin(DHT11_DATA_GPIO_Port, DHT11_DATA_Pin) == GPIO_PIN_SET) ? 1U : 0U;
 }
 
 /**
@@ -102,20 +121,23 @@ void DHT11_Init(void)
   cycles_per_us = SystemCoreClock / 1000000U;
   DWT_Enable();
 
-  /* PB2: chuyen tu push-pull (CubeMX) sang open-drain de dung chung bus
-     voi cam bien ma khong xung dot muc logic. */
-  GPIO_InitStruct.Pin   = DHT11_GPIO_Output_Pin;
-  GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_OD;
-  GPIO_InitStruct.Pull  = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(DHT11_GPIO_Output_GPIO_Port, &GPIO_InitStruct);
+  /* DEBUG: kiem chung thang do us cua DWT bang SysTick lam chuan.
+     HAL_Delay(50) keo dai 50..51 ms => selftest ky vong 50000..51000 us. */
+  dht11_dbg_cycles_per_us = cycles_per_us;
+  uint32_t t0 = DWT_GetCycles();
+  HAL_Delay(50);
+  dht11_dbg_selftest_us = (DWT_GetCycles() - t0) / cycles_per_us;
 
-  /* PB1: them pull-up noi bo ho tro giu muc HIGH khi bus nha
-     (module DHT11 thuong da co pull-up rieng). */
-  GPIO_InitStruct.Pin  = DHT11_GPIO_Input_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(DHT11_GPIO_Input_GPIO_Port, &GPIO_InitStruct);
+  /* Chan DATA: chuyen sang output open-drain + pull-up de vua keo bus
+     xuong duoc (start signal) vua doc duoc phan hoi cua cam bien qua IDR
+     ma khong phai doi mode giua chung.
+     Pull-up noi bo chi ho tro giu HIGH; module DHT11 thuong da co
+     pull-up rieng. */
+  GPIO_InitStruct.Pin   = DHT11_DATA_Pin;
+  GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_OD;
+  GPIO_InitStruct.Pull  = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(DHT11_DATA_GPIO_Port, &GPIO_InitStruct);
 
   DHT11_BusRelease();
 }
@@ -123,6 +145,10 @@ void DHT11_Init(void)
 DHT11_Status_t DHT11_Read(int16_t *temp_x10, uint8_t *humi)
 {
   uint8_t data[5] = {0};
+
+  /* DEBUG: muc bus luc ranh, phai la 1 (pull-up giu HIGH).
+     Neu la 0 => bus bi ghim LOW: sai chan / chap day / PB2 con noi bus. */
+  dht11_dbg_idle_level = DHT11_BusRead();
 
   /* --- Tin hieu start: keo LOW >= 18 ms roi nha bus --- */
   DHT11_BusLow();

@@ -22,7 +22,7 @@ uint8_t Thermistor_GetAlarm(void)
   if (HAL_GPIO_ReadPin(THERMISTOR_GPIO_EXTI5_GPIO_Port,
                        THERMISTOR_GPIO_EXTI5_Pin) == GPIO_PIN_SET)
   {
-    return 1U;
+    return 0U;
   }
 
   /* Vua co canh len gan day: van bao de khong bo lo xung ngan */
@@ -30,12 +30,12 @@ uint8_t Thermistor_GetAlarm(void)
   {
     if ((HAL_GetTick() - therm_last_edge_tick) < THERMISTOR_ALARM_HOLD_MS)
     {
-      return 1U;
+      return 0U;
     }
     therm_edge_seen = 0;
   }
 
-  return 0U;
+  return 1U;
 }
 
 void Thermistor_EXTI_Callback(void)

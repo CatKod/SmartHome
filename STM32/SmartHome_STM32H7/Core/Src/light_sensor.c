@@ -6,11 +6,14 @@
   */
 
 #include "light_sensor.h"
+#include "system_config.h"
+#include "system_types.h"
 #include "adc.h"
 
 #define LIGHT_ADC_TIMEOUT_MS   10U
 
 static uint8_t light_status = 0;   /* Trang thai gan nhat (giu khi doc loi) */
+static uint8_t light_level = LIGHT_LEVEL_DARK;
 
 void LightSensor_Init(void)
 {
@@ -88,4 +91,83 @@ uint8_t LightSensor_GetStatus(void)
   }
 
   return light_status;
+}
+
+uint8_t LightSensor_GetPercent(uint16_t *raw_out)
+{
+  uint16_t raw;
+
+  if (LightSensor_ReadRaw(&raw) != HAL_OK)
+  {
+    if (raw_out != NULL)
+    {
+      *raw_out = 0U;
+    }
+    return 0U;
+  }
+
+  if (raw_out != NULL)
+  {
+    *raw_out = raw;
+  }
+
+  /* Raw thap = sang hon => phan tram dao nguoc */
+  uint32_t pct = 100U - ((uint32_t)raw * 100U / 65535U);
+  if (pct > 100U)
+  {
+    pct = 100U;
+  }
+  return (uint8_t)pct;
+}
+
+uint8_t LightSensor_GetLevel(void)
+{
+  uint16_t raw;
+
+  if (LightSensor_ReadRaw(&raw) != HAL_OK)
+  {
+    return light_level;
+  }
+
+  uint8_t target = light_level;
+
+  switch (light_level)
+  {
+  case LIGHT_LEVEL_BRIGHT:
+    if (raw > (LIGHT_LEVEL_BRIGHT_MAX + LIGHT_LEVEL_HYST))
+    {
+      target = LIGHT_LEVEL_NORMAL;
+    }
+    break;
+  case LIGHT_LEVEL_NORMAL:
+    if (raw <= (LIGHT_LEVEL_BRIGHT_MAX - LIGHT_LEVEL_HYST))
+    {
+      target = LIGHT_LEVEL_BRIGHT;
+    }
+    else if (raw > (LIGHT_LEVEL_NORMAL_MAX + LIGHT_LEVEL_HYST))
+    {
+      target = LIGHT_LEVEL_DIM;
+    }
+    break;
+  case LIGHT_LEVEL_DIM:
+    if (raw <= (LIGHT_LEVEL_NORMAL_MAX - LIGHT_LEVEL_HYST))
+    {
+      target = LIGHT_LEVEL_NORMAL;
+    }
+    else if (raw > (LIGHT_LEVEL_DIM_MAX + LIGHT_LEVEL_HYST))
+    {
+      target = LIGHT_LEVEL_DARK;
+    }
+    break;
+  default:
+    if (raw <= (LIGHT_LEVEL_DIM_MAX - LIGHT_LEVEL_HYST))
+    {
+      target = LIGHT_LEVEL_DIM;
+    }
+    break;
+  }
+
+  light_level = target;
+  light_status = (target >= LIGHT_LEVEL_NORMAL) ? 1U : 0U;
+  return light_level;
 }

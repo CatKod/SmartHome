@@ -22,6 +22,11 @@ static const uint8_t half_step_table[8] =
 
 static uint8_t step_index = 0;   /* Vi tri hien tai trong bang half-step */
 
+static uint32_t s_steps_remaining = 0U;
+static StepperDir_t s_run_dir = STEPPER_CW;
+static uint32_t s_last_step_tick = 0U;
+static uint8_t s_running = 0U;
+
 static void Stepper_WritePhase(uint8_t phase)
 {
   HAL_GPIO_WritePin(ULN2003_28BYJ_GPIO_Output_1_GPIO_Port, ULN2003_28BYJ_GPIO_Output_1_Pin,
@@ -66,4 +71,65 @@ void Stepper_RotateAngle(uint32_t angle_deg, StepperDir_t dir)
 void Stepper_Release(void)
 {
   Stepper_WritePhase(0x00U);
+}
+
+void Stepper_Start(uint32_t steps, StepperDir_t dir)
+{
+  if (steps == 0U)
+  {
+    return;
+  }
+  s_steps_remaining = steps;
+  s_run_dir = dir;
+  s_running = 1U;
+  s_last_step_tick = HAL_GetTick();
+}
+
+void Stepper_Cancel(void)
+{
+  s_running = 0U;
+  s_steps_remaining = 0U;
+  Stepper_Release();
+}
+
+uint8_t Stepper_IsBusy(void)
+{
+  return (s_running != 0U && s_steps_remaining > 0U) ? 1U : 0U;
+}
+
+void Stepper_Tick(void)
+{
+  if (!Stepper_IsBusy())
+  {
+    if (s_running != 0U)
+    {
+      s_running = 0U;
+      Stepper_Release();
+    }
+    return;
+  }
+
+  uint32_t now = HAL_GetTick();
+  if ((now - s_last_step_tick) < STEPPER_STEP_DELAY_MS)
+  {
+    return;
+  }
+  s_last_step_tick = now;
+
+  if (s_run_dir == STEPPER_CW)
+  {
+    step_index = (uint8_t)((step_index + 1U) & 0x07U);
+  }
+  else
+  {
+    step_index = (uint8_t)((step_index + 7U) & 0x07U);
+  }
+  Stepper_WritePhase(half_step_table[step_index]);
+  s_steps_remaining--;
+
+  if (s_steps_remaining == 0U)
+  {
+    s_running = 0U;
+    Stepper_Release();
+  }
 }

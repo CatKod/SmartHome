@@ -1,7 +1,6 @@
-../Core/Src/main.c:87:13:Sensor_Read	2
-../Core/Src/main.c:112:13:Sensor_SendFrame	5
-../Core/Src/main.c:142:6:HAL_UART_TxCpltCallback	2
-../Core/Src/main.c:155:5:main	2
-../Core/Src/main.c:224:6:SystemClock_Config	4
-../Core/Src/main.c:285:6:MPU_Config	1
-../Core/Src/main.c:316:6:Error_Handler	1
+../Core/Src/main.c:21:5:main	1
+../Core/Src/main.c:43:6:HAL_UART_TxCpltCallback	2
+../Core/Src/main.c:51:6:HAL_UART_RxCpltCallback	2
+../Core/Src/main.c:59:6:SystemClock_Config	4
+../Core/Src/main.c:103:6:MPU_Config	1
+../Core/Src/main.c:122:6:Error_Handler	1

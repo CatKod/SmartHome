@@ -3,13 +3,15 @@
   * @file    dht11.h
   * @brief   Driver DHT11 (nhiet do / do am) bit-bang 1-wire.
   *
-  * Phan cung (theo CubeMX):
-  *   - PB2 (DHT11_GPIO_Output): chan keo DATA xuong (chuyen sang open-drain
-  *     trong DHT11_Init de tranh xung dot bus).
-  *   - PB1 (DHT11_GPIO_Input) : chan doc muc logic cua DATA.
-  *   => Ca hai chan phai duoc noi chung vao chan DATA cua DHT11.
-  *   Module DHT11 thuong co san dien tro keo len; neu dung cam bien tran
-  *   can them pull-up ngoai 4.7k..10k len 3.3V.
+ * Phan cung (theo CubeMX):
+ *   - PB1 (DHT11_GPIO_Input): chan DATA duy nhat cua DHT11 (bus 1-wire).
+ *     DHT11_Init chuyen PB1 sang output open-drain + pull-up: ghi 0 de keo
+ *     bus xuong, ghi 1 de nha bus; muc thuc te tren chan van doc duoc qua
+ *     IDR ngay trong che do output (dac tinh GPIO cua STM32).
+ *   - PB2 (DHT11_GPIO_Output): KHONG thuoc DHT11 - chan nay de dieu khien
+ *     thiet bi khac (hien chua su dung), driver nay khong dong den.
+ *   Module DHT11 thuong co san dien tro keo len; neu dung cam bien tran
+ *   can them pull-up ngoai 4.7k..10k len 3.3V.
   *
   * Luu y: DHT11_Read() la ham blocking (~25 ms) va chi duoc goi toi da
   * 1 lan / giay (gioi han cua cam bien).
@@ -25,6 +27,13 @@ extern "C" {
 
 #include "main.h"
 
+/* Chan DATA cua bus 1-wire. Mac dinh la PB1 (DHT11_GPIO_Input).
+ * Neu day OUT cua module thuc te dang cam vao PB2 (chan co nhan cu
+ * "DHT11_GPIO_Output"), chi can doi 2 dong nay sang
+ * DHT11_GPIO_Output_GPIO_Port / DHT11_GPIO_Output_Pin de thu. */
+#define DHT11_DATA_GPIO_Port   DHT11_GPIO_Input_GPIO_Port
+#define DHT11_DATA_Pin         DHT11_GPIO_Input_Pin
+
 typedef enum
 {
   DHT11_OK = 0,          /* Doc thanh cong                       */
@@ -35,7 +44,7 @@ typedef enum
 
 /**
  * @brief Khoi tao driver: bat DWT cycle counter (delay/do xung us),
- *        chuyen PB2 sang open-drain va nha bus o muc cao.
+ *        chuyen PB1 sang output open-drain + pull-up va nha bus o muc cao.
  */
 void DHT11_Init(void);
 

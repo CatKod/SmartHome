@@ -60,6 +60,12 @@ void Stepper_RotateAngle(uint32_t angle_deg, StepperDir_t dir);
  */
 void Stepper_Release(void);
 
+/** Non-blocking API */
+void Stepper_Start(uint32_t steps, StepperDir_t dir);
+void Stepper_Tick(void);
+uint8_t Stepper_IsBusy(void);
+void Stepper_Cancel(void);
+
 #ifdef __cplusplus
 }
 #endif

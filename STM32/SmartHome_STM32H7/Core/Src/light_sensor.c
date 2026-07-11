@@ -14,16 +14,23 @@ static uint8_t light_status = 0;   /* Trang thai gan nhat (giu khi doc loi) */
 
 void LightSensor_Init(void)
 {
-  ADC_ChannelConfTypeDef sConfig = {0};
-
-  /* Hieu chuan offset + linearity: bat buoc tren STM32H7 sau moi lan cap dien */
+  /* Hieu chuan offset + linearity: bat buoc tren STM32H7 sau moi lan cap dien.
+     Chay khi ADC dang tat (truoc moi HAL_ADC_Start) nen an toan du goi
+     nhieu lan tu cac driver dung chung ADC1. */
   if (HAL_ADCEx_Calibration_Start(&hadc1, ADC_CALIB_OFFSET_LINEARITY,
                                   ADC_SINGLE_ENDED) != HAL_OK)
   {
     Error_Handler();
   }
+}
 
-  /* Cau hinh lai kenh 16 voi sampling time dai hon (CubeMX de 1.5 chu ky,
+HAL_StatusTypeDef LightSensor_ReadRaw(uint16_t *raw)
+{
+  ADC_ChannelConfTypeDef sConfig = {0};
+  HAL_StatusTypeDef status;
+
+  /* ADC1 dung chung voi cam bien mua (kenh 17) nen phai chon lai kenh 16
+     truoc moi lan doc. Sampling time 64.5 chu ky (CubeMX de 1.5 chu ky,
      qua ngan cho cau phan ap LDR tro khang cao). */
   sConfig.Channel                = ADC_CHANNEL_16;
   sConfig.Rank                   = ADC_REGULAR_RANK_1;
@@ -32,15 +39,11 @@ void LightSensor_Init(void)
   sConfig.OffsetNumber           = ADC_OFFSET_NONE;
   sConfig.Offset                 = 0;
   sConfig.OffsetSignedSaturation = DISABLE;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  status = HAL_ADC_ConfigChannel(&hadc1, &sConfig);
+  if (status != HAL_OK)
   {
-    Error_Handler();
+    return status;
   }
-}
-
-HAL_StatusTypeDef LightSensor_ReadRaw(uint16_t *raw)
-{
-  HAL_StatusTypeDef status;
 
   status = HAL_ADC_Start(&hadc1);
   if (status != HAL_OK)

@@ -39,16 +39,8 @@ uint8_t PIR_GetMotion(void)
   return 0U;
 }
 
-/**
- * @brief Callback EXTI dung chung cua HAL (goi tu HAL_GPIO_EXTI_IRQHandler).
- *        Hien chi xu ly PIR (PC0); cam bien am thanh (PC3) va thermistor
- *        (PC5) se them vao day khi co driver.
- */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+void PIR_EXTI_Callback(void)
 {
-  if (GPIO_Pin == PIR_SR505_GPIO_EXTI0_Pin)
-  {
-    pir_last_edge_tick = HAL_GetTick();
-    pir_edge_seen      = 1;
-  }
+  pir_last_edge_tick = HAL_GetTick();
+  pir_edge_seen      = 1;
 }

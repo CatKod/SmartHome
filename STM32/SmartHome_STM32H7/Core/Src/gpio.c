@@ -144,5 +144,27 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
+#include "pir_sensor.h"
+#include "sound_sensor.h"
+#include "thermistor.h"
 
+/**
+ * @brief Callback EXTI dung chung cua HAL (goi tu HAL_GPIO_EXTI_IRQHandler).
+ *        Phan phoi su kien canh len cho tung driver theo chan ngat.
+ */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  if (GPIO_Pin == PIR_SR505_GPIO_EXTI0_Pin)
+  {
+    PIR_EXTI_Callback();
+  }
+  else if (GPIO_Pin == SOUND_SENSOR_GPIO_EXTI3_Pin)
+  {
+    SoundSensor_EXTI_Callback();
+  }
+  else if (GPIO_Pin == THERMISTOR_GPIO_EXTI5_Pin)
+  {
+    Thermistor_EXTI_Callback();
+  }
+}
 /* USER CODE END 2 */

@@ -7,16 +7,15 @@
   *   - PC0 (PIR_SR505_GPIO_EXTI0): ngo ra digital cua SR505,
   *     EXTI canh len, IRQ EXTI0 da bat trong gpio.c.
   *
-  * Nguyen ly: ngat EXTI chot lai thoi diem phat hien chuyen dong.
-  * PIR_GetMotion() tra ve 1 neu chan dang o muc HIGH hoac vua co canh len
-  * trong khoang PIR_MOTION_HOLD_MS gan day (de khong bo lo xung ngan giua
-  * hai lan doc dinh ky 1 giay).
-  *
-  * Luu y: HAL_GPIO_EXTI_Callback duoc dinh nghia trong pir_sensor.c.
-  * Neu sau nay them driver cho cam bien am thanh (PC3) / thermistor (PC5),
-  * hay xu ly them cac pin do trong cung callback nay.
-  ******************************************************************************
-  */
+ * Nguyen ly: ngat EXTI chot lai thoi diem phat hien chuyen dong.
+ * PIR_GetMotion() tra ve 1 neu chan dang o muc HIGH hoac vua co canh len
+ * trong khoang PIR_MOTION_HOLD_MS gan day (de khong bo lo xung ngan giua
+ * hai lan doc dinh ky 1 giay).
+ *
+ * Luu y: HAL_GPIO_EXTI_Callback dung chung duoc dinh nghia trong gpio.c;
+ * no goi PIR_EXTI_Callback() khi co canh len tren PC0.
+ ******************************************************************************
+ */
 
 #ifndef __PIR_SENSOR_H
 #define __PIR_SENSOR_H
@@ -43,6 +42,11 @@ void PIR_Init(void);
  *         PIR_MOTION_HOLD_MS gan day), 0 = khong.
  */
 uint8_t PIR_GetMotion(void);
+
+/**
+ * @brief Goi tu HAL_GPIO_EXTI_Callback (gpio.c) khi co canh len tren PC0.
+ */
+void PIR_EXTI_Callback(void);
 
 #ifdef __cplusplus
 }

@@ -1,0 +1,12 @@
+../Core/Src/rfid_rc522.c:49:20:RC522_Select	1
+../Core/Src/rfid_rc522.c:54:20:RC522_Deselect	1
+../Core/Src/rfid_rc522.c:59:13:RC522_WriteReg	1
+../Core/Src/rfid_rc522.c:68:16:RC522_ReadReg	1
+../Core/Src/rfid_rc522.c:79:13:RC522_SetBits	1
+../Core/Src/rfid_rc522.c:84:13:RC522_ClearBits	1
+../Core/Src/rfid_rc522.c:98:23:RC522_Transceive	8
+../Core/Src/rfid_rc522.c:150:13:RC522_CalcCRC	4
+../Core/Src/rfid_rc522.c:179:6:RC522_Init	1
+../Core/Src/rfid_rc522.c:202:9:RC522_GetVersion	1
+../Core/Src/rfid_rc522.c:207:16:RC522_ReadCardUID	6
+../Core/Src/rfid_rc522.c:254:6:RC522_Halt	1

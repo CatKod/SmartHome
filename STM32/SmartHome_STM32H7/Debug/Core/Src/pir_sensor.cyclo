@@ -1,0 +1,3 @@
+../Core/Src/pir_sensor.c:13:6:PIR_Init	1
+../Core/Src/pir_sensor.c:19:9:PIR_GetMotion	4
+../Core/Src/pir_sensor.c:42:6:PIR_EXTI_Callback	1

@@ -1,0 +1,5 @@
+../Core/Src/stepper_28byj.c:25:13:Stepper_WritePhase	1
+../Core/Src/stepper_28byj.c:37:6:Stepper_Init	1
+../Core/Src/stepper_28byj.c:43:6:Stepper_RotateSteps	3
+../Core/Src/stepper_28byj.c:61:6:Stepper_RotateAngle	1
+../Core/Src/stepper_28byj.c:66:6:Stepper_Release	1

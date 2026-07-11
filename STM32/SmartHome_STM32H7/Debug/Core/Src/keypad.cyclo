@@ -1,0 +1,4 @@
+../Core/Src/keypad.c:41:13:Keypad_SettleDelay	2
+../Core/Src/keypad.c:49:6:Keypad_Init	2
+../Core/Src/keypad.c:57:6:Keypad_Scan	7
+../Core/Src/keypad.c:94:6:Keypad_GetKey	5

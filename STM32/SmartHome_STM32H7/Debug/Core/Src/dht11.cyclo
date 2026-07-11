@@ -1,0 +1,9 @@
+../Core/Src/dht11.c:34:13:DWT_Enable	1
+../Core/Src/dht11.c:42:24:DWT_GetCycles	1
+../Core/Src/dht11.c:47:20:Delay_us	2
+../Core/Src/dht11.c:58:20:DHT11_BusLow	1
+../Core/Src/dht11.c:63:20:DHT11_BusRelease	1
+../Core/Src/dht11.c:69:23:DHT11_BusRead	2
+../Core/Src/dht11.c:78:17:DHT11_WaitLevel	3
+../Core/Src/dht11.c:98:6:DHT11_Init	1
+../Core/Src/dht11.c:123:16:DHT11_Read	10

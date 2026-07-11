@@ -1,0 +1,4 @@
+../Core/Src/sound_sensor.c:14:6:SoundSensor_Init	1
+../Core/Src/sound_sensor.c:21:9:SoundSensor_GetDetected	3
+../Core/Src/sound_sensor.c:34:10:SoundSensor_GetEventCount	1
+../Core/Src/sound_sensor.c:41:6:SoundSensor_EXTI_Callback	1

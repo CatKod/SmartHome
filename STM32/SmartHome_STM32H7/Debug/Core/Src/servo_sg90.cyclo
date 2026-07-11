@@ -1,0 +1,6 @@
+../Core/Src/servo_sg90.c:11:17:Servo_AngleToPulse	2
+../Core/Src/servo_sg90.c:21:6:Servo_Init	1
+../Core/Src/servo_sg90.c:27:6:Servo_SetAngle	1
+../Core/Src/servo_sg90.c:32:6:Servo_SetPulse	3
+../Core/Src/servo_sg90.c:45:9:Servo_GetAngle	3
+../Core/Src/servo_sg90.c:61:6:Servo_Stop	1

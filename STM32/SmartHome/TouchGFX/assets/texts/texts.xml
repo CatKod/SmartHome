@@ -5,10 +5,205 @@
   </Languages>
   <Texts>
     <TextGroup Id="Group1" />
+    <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_U1GM" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Safe</Translation>
+      </Text>
+      <Text Id="__SingleUse_ADCD" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Everything is fine</Translation>
+      </Text>
+      <Text Id="__SingleUse_YNB3" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Status</Translation>
+      </Text>
+      <Text Id="__SingleUse_WE0B" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">10</Translation>
+      </Text>
+      <Text Id="__SingleUse_ALDQ" Alignment="Left" TypographyId="Medium">
+        <Translation Language="GB">Exit in &lt;value&gt;s</Translation>
+      </Text>
+      <Text Id="__SingleUse_9CJD" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Light</Translation>
+      </Text>
+      <Text Id="__SingleUse_7K91" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Alert</Translation>
+      </Text>
+      <Text Id="__SingleUse_6GIE" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Window</Translation>
+      </Text>
+      <Text Id="__SingleUse_X8V3" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Auto Mode</Translation>
+      </Text>
+      <Text Id="__SingleUse_S2FQ" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Setting</Translation>
+      </Text>
+      <Text Id="__SingleUse_8YQJ" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_8GET" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_GSET" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;:&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_VWUS" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Home Mode</Translation>
+      </Text>
+      <Text Id="__SingleUse_CI9I" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Good</Translation>
+      </Text>
+      <Text Id="__SingleUse_RLLE" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_68SP" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_1EXX" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_55IK" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_BP3A" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_11H1" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_C094" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_D4O5" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_F7BX" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_QDGT" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_20DE" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZT2W" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_7BKR" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_W8KV" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_43DB" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_A485" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">ENTER</Translation>
+      </Text>
+      <Text Id="__SingleUse_7FPH" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">CANCEL</Translation>
+      </Text>
+      <Text Id="__SingleUse_347W" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Verifying...</Translation>
+      </Text>
+      <Text Id="__SingleUse_FQFF" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_8Y6P" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Swipe Card</Translation>
+      </Text>
+      <Text Id="__SingleUse_7SN7" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_C0XS" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_XEH5" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;:&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_7HX0" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">CANCEL</Translation>
+      </Text>
+      <Text Id="__SingleUse_1CGZ" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Password</Translation>
+      </Text>
+      <Text Id="__SingleUse_S8TG" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Card</Translation>
+      </Text>
+      <Text Id="__SingleUse_9A3H" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Authentication</Translation>
+      </Text>
+      <Text Id="__SingleUse_QWJU" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_10LP" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_YEMX" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;:&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_KCDN" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Security &amp; Safety</Translation>
+      </Text>
+      <Text Id="__SingleUse_KXG9" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_YSSK" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_UW2H" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;:&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_PFK1" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Enter Password</Translation>
+      </Text>
+      <Text Id="__SingleUse_YHUH" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_X6BA" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_9V1A" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;:&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_WGG7" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">000</Translation>
+      </Text>
+      <Text Id="__SingleUse_5VEP" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;%</Translation>
+      </Text>
+      <Text Id="__SingleUse_DX7U" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_249U" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_5PQS" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;.&lt;value&gt;°C</Translation>
+      </Text>
+      <Text Id="__SingleUse_9RX5" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">000</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZDXE" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;%</Translation>
+      </Text>
+      <Text Id="__SingleUse_574N" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Welcome Home!</Translation>
+      </Text>
+      <Text Id="__SingleUse_M6EY" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_XTJ4" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_Y6GN" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;:&lt;value&gt;</Translation>
+      </Text>
+    </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="°%*" WildcardCharacterRanges="0-9" />
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Medium" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9" />
   </Typographies>
 </TextDatabase>

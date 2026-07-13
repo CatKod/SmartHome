@@ -20,7 +20,8 @@ typedef struct {
     char    lock[12];
     char    window[12];
     char    mode[16];
-    int     light_on;
+    int     hall_light_on;
+    int     room_light_on;
     int     alarm;
     int     risk_score;
 } system_state_t;

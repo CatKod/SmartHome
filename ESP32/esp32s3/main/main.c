@@ -23,20 +23,22 @@ static void parse_data_frame(const char *body)
     char lock[12] = "ENGAGED";
     char window[12] = "CLOSED";
     char mode[16] = "HOME";
-    char light_on_str[4] = "OFF";
+    char hall_light_str[4] = "OFF";
+    char room_light_str[4] = "OFF";
 
     int matched = sscanf(body,
-        "%f,%d,%d,%11[^,],%d,%d,%d,%d,%11[^,],%11[^,],%15[^,],%3[^,],%d,%d",
+        "%f,%d,%d,%11[^,],%d,%d,%d,%d,%11[^,],%11[^,],%15[^,],%3[^,],%3[^,],%d,%d",
         &st.temperature, &st.humidity, &st.light_pct,
         light_level, &st.motion, &st.sound, &st.heat_alarm, &st.rain,
-        lock, window, mode, light_on_str, &st.alarm, &st.risk_score);
+        lock, window, mode, hall_light_str, room_light_str, &st.alarm, &st.risk_score);
 
-    if (matched >= 14) {
+    if (matched >= 15) {
         strncpy(st.light_level, light_level, sizeof(st.light_level) - 1);
         strncpy(st.lock, lock, sizeof(st.lock) - 1);
         strncpy(st.window, window, sizeof(st.window) - 1);
         strncpy(st.mode, mode, sizeof(st.mode) - 1);
-        st.light_on = (strcmp(light_on_str, "ON") == 0) ? 1 : 0;
+        st.hall_light_on = (strcmp(hall_light_str, "ON") == 0) ? 1 : 0;
+        st.room_light_on = (strcmp(room_light_str, "ON") == 0) ? 1 : 0;
         s_state = st;
         mqtt_manager_publish_state(&s_state);
     }

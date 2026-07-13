@@ -1,6 +1,6 @@
 ../Core/Src/sn74hc595.c:14:20:HC595_ClockPulse	1
-../Core/Src/sn74hc595.c:20:20:HC595_Latch	1
-../Core/Src/sn74hc595.c:26:13:HC595_ShiftByte	2
-../Core/Src/sn74hc595.c:37:6:HC595_Init	1
-../Core/Src/sn74hc595.c:45:6:HC595_Write	1
-../Core/Src/sn74hc595.c:51:6:HC595_WriteMulti	2
+../Core/Src/sn74hc595.c:22:20:HC595_Latch	1
+../Core/Src/sn74hc595.c:30:13:HC595_ShiftByte	2
+../Core/Src/sn74hc595.c:41:6:HC595_Init	1
+../Core/Src/sn74hc595.c:49:6:HC595_Write	1
+../Core/Src/sn74hc595.c:55:6:HC595_WriteMulti	2

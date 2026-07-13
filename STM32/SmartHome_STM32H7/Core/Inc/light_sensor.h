@@ -29,6 +29,9 @@ extern "C" {
 /* Do tre (hysteresis) tranh trang thai nhay lien tuc quanh nguong */
 #define LIGHT_SENSOR_HYSTERESIS   2000U
 
+/** Gia tri ADC tho lan doc gan nhat (0..65535); cap nhat trong LightSensor_ReadRaw(). */
+extern uint16_t g_light_sensor_raw;
+
 /**
  * @brief Hieu chuan ADC1 (bat buoc tren H7 de so lieu chinh xac).
  *        Goi 1 lan sau MX_ADC1_Init().

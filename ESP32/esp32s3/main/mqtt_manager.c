@@ -102,7 +102,8 @@ void mqtt_manager_publish_state(const system_state_t *st)
     mqtt_publish_str(APP_MQTT_TOPIC_STATE_MODE, st->mode, 1);
     mqtt_publish_str(APP_MQTT_TOPIC_STATE_LOCK, st->lock, 1);
     mqtt_publish_str(APP_MQTT_TOPIC_STATE_WINDOW, st->window, 1);
-    mqtt_publish_str(APP_MQTT_TOPIC_STATE_LIGHT, st->light_on ? "ON" : "OFF", 1);
+    mqtt_publish_str(APP_MQTT_TOPIC_STATE_HALL_LIGHT, st->hall_light_on ? "ON" : "OFF", 1);
+    mqtt_publish_str(APP_MQTT_TOPIC_STATE_ROOM_LIGHT, st->room_light_on ? "ON" : "OFF", 1);
     mqtt_publish_str(APP_MQTT_TOPIC_STATE_ALARM, st->alarm ? "ON" : "OFF", 1);
 }
 

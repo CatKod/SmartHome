@@ -17,7 +17,7 @@ Khung thống nhất (2 chiều):
 ### DATA (định kỳ 1 giây)
 
 ```text
-DATA,temp,humi,light_pct,light_state,motion,sound,heat,rain,lock,window,mode,light,alarm,risk
+DATA,temp,humi,light_pct,light_state,motion,sound,heat,rain,lock,window,mode,hall_light,room_light,alarm,risk
 ```
 
 | Field | Ví dụ | Mô tả |
@@ -33,7 +33,8 @@ DATA,temp,humi,light_pct,light_state,motion,sound,heat,rain,lock,window,mode,lig
 | lock | ENGAGED/RELEASED | Khóa servo |
 | window | CLOSED/OPEN/MOVING | Cửa sổ |
 | mode | HOME/EXIT_DELAY/SECURITY/SUSPICIOUS/ALARM | |
-| light | ON/OFF | Relay 1 |
+| hall_light | ON/OFF | Relay 1 — đèn hành lang (PIR + ánh sáng) |
+| room_light | ON/OFF | Relay 2 — đèn phòng (vỗ tay / MQTT) |
 | alarm | 0/1 | |
 | risk | 0–N | Risk score (phiên SUSPICIOUS) |
 
@@ -77,7 +78,8 @@ ESP32 chờ ACK tối đa **500 ms**, retry **1 lần**. Nếu timeout → publi
 | `smarthome/state/mode` | yes | HOME, SECURITY, ... |
 | `smarthome/state/lock` | yes | ENGAGED / RELEASED |
 | `smarthome/state/window` | yes | CLOSED / OPEN / MOVING |
-| `smarthome/state/light` | yes | ON / OFF |
+| `smarthome/state/hall_light` | yes | ON / OFF (hành lang) |
+| `smarthome/state/room_light` | yes | ON / OFF (phòng) |
 | `smarthome/state/alarm` | yes | ON / OFF |
 | `smarthome/event` | no | Nhật ký sự kiện |
 | `smarthome/cmd` | — | Lệnh từ dashboard → ESP32 |

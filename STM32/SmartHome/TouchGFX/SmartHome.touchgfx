@@ -17,499 +17,6 @@
             }
           },
           {
-            "Type": "Shape",
-            "Name": "bgWeather",
-            "X": 125,
-            "Y": 185,
-            "Width": 100,
-            "Height": 100,
-            "Color": {
-              "Red": 6,
-              "Green": 214,
-              "Blue": 160
-            },
-            "Points": [
-              {
-                "X": 85.0
-              },
-              {
-                "X": 91.0,
-                "Y": 1.0
-              },
-              {
-                "X": 96.0,
-                "Y": 4.0
-              },
-              {
-                "X": 99.0,
-                "Y": 9.0
-              },
-              {
-                "X": 100.0,
-                "Y": 15.0
-              },
-              {
-                "X": 100.0,
-                "Y": 85.0
-              },
-              {
-                "X": 99.0,
-                "Y": 91.0
-              },
-              {
-                "X": 96.0,
-                "Y": 96.0
-              },
-              {
-                "X": 91.0,
-                "Y": 99.0
-              },
-              {
-                "X": 85.0,
-                "Y": 100.0
-              },
-              {
-                "X": 15.0,
-                "Y": 100.0
-              },
-              {
-                "X": 9.0,
-                "Y": 99.0
-              },
-              {
-                "X": 4.0,
-                "Y": 96.0
-              },
-              {
-                "X": 1.0,
-                "Y": 91.0
-              },
-              {
-                "Y": 85.0
-              },
-              {
-                "Y": 15.0
-              },
-              {
-                "X": 1.0,
-                "Y": 9.0
-              },
-              {
-                "X": 4.0,
-                "Y": 4.0
-              },
-              {
-                "X": 9.0,
-                "Y": 1.0
-              },
-              {
-                "X": 15.0
-              }
-            ],
-            "XScale": 1.0,
-            "YScale": 1.0
-          },
-          {
-            "Type": "TextArea",
-            "Name": "txtWeather",
-            "X": 149,
-            "Y": 259,
-            "Width": 52,
-            "Height": 24,
-            "TextId": "__SingleUse_RLLE",
-            "TextRotation": "0",
-            "AutoSize": true,
-            "Wildcard1": {
-              "TextId": "__SingleUse_CI9I"
-            }
-          },
-          {
-            "Type": "Image",
-            "Name": "imgWeather",
-            "X": 142,
-            "Y": 192,
-            "Width": 64,
-            "Height": 64,
-            "RelativeFilename": "weather.png"
-          },
-          {
-            "Type": "Shape",
-            "Name": "bgLight",
-            "X": 15,
-            "Y": 185,
-            "Width": 100,
-            "Height": 100,
-            "Color": {
-              "Red": 255,
-              "Green": 209,
-              "Blue": 102
-            },
-            "Points": [
-              {
-                "X": 85.0
-              },
-              {
-                "X": 91.0,
-                "Y": 1.0
-              },
-              {
-                "X": 96.0,
-                "Y": 4.0
-              },
-              {
-                "X": 99.0,
-                "Y": 9.0
-              },
-              {
-                "X": 100.0,
-                "Y": 15.0
-              },
-              {
-                "X": 100.0,
-                "Y": 85.0
-              },
-              {
-                "X": 99.0,
-                "Y": 91.0
-              },
-              {
-                "X": 96.0,
-                "Y": 96.0
-              },
-              {
-                "X": 91.0,
-                "Y": 99.0
-              },
-              {
-                "X": 85.0,
-                "Y": 100.0
-              },
-              {
-                "X": 15.0,
-                "Y": 100.0
-              },
-              {
-                "X": 9.0,
-                "Y": 99.0
-              },
-              {
-                "X": 4.0,
-                "Y": 96.0
-              },
-              {
-                "X": 1.0,
-                "Y": 91.0
-              },
-              {
-                "Y": 85.0
-              },
-              {
-                "Y": 15.0
-              },
-              {
-                "X": 1.0,
-                "Y": 9.0
-              },
-              {
-                "X": 4.0,
-                "Y": 4.0
-              },
-              {
-                "X": 9.0,
-                "Y": 1.0
-              },
-              {
-                "X": 15.0
-              }
-            ],
-            "XScale": 1.0,
-            "YScale": 1.0
-          },
-          {
-            "Type": "TextArea",
-            "Name": "txtLight",
-            "X": 35,
-            "Y": 259,
-            "Width": 61,
-            "Height": 24,
-            "TextId": "__SingleUse_ZDXE",
-            "TextRotation": "0",
-            "AutoSize": true,
-            "Wildcard1": {
-              "TextId": "__SingleUse_9RX5"
-            }
-          },
-          {
-            "Type": "Image",
-            "Name": "imgLight",
-            "X": 33,
-            "Y": 192,
-            "Width": 64,
-            "Height": 64,
-            "RelativeFilename": "brightness.png"
-          },
-          {
-            "Type": "Shape",
-            "Name": "bgHumi",
-            "X": 125,
-            "Y": 75,
-            "Width": 100,
-            "Height": 100,
-            "Color": {
-              "Red": 20,
-              "Green": 126,
-              "Blue": 223
-            },
-            "Points": [
-              {
-                "X": 85.0
-              },
-              {
-                "X": 91.0,
-                "Y": 1.0
-              },
-              {
-                "X": 96.0,
-                "Y": 4.0
-              },
-              {
-                "X": 99.0,
-                "Y": 9.0
-              },
-              {
-                "X": 100.0,
-                "Y": 15.0
-              },
-              {
-                "X": 100.0,
-                "Y": 85.0
-              },
-              {
-                "X": 99.0,
-                "Y": 91.0
-              },
-              {
-                "X": 96.0,
-                "Y": 96.0
-              },
-              {
-                "X": 91.0,
-                "Y": 99.0
-              },
-              {
-                "X": 85.0,
-                "Y": 100.0
-              },
-              {
-                "X": 15.0,
-                "Y": 100.0
-              },
-              {
-                "X": 9.0,
-                "Y": 99.0
-              },
-              {
-                "X": 4.0,
-                "Y": 96.0
-              },
-              {
-                "X": 1.0,
-                "Y": 91.0
-              },
-              {
-                "Y": 85.0
-              },
-              {
-                "Y": 15.0
-              },
-              {
-                "X": 1.0,
-                "Y": 9.0
-              },
-              {
-                "X": 4.0,
-                "Y": 4.0
-              },
-              {
-                "X": 9.0,
-                "Y": 1.0
-              },
-              {
-                "X": 15.0
-              }
-            ],
-            "XScale": 1.0,
-            "YScale": 1.0
-          },
-          {
-            "Type": "TextArea",
-            "Name": "txtHumi",
-            "X": 145,
-            "Y": 149,
-            "Width": 61,
-            "Height": 24,
-            "TextId": "__SingleUse_5VEP",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true,
-            "Wildcard1": {
-              "TextId": "__SingleUse_WGG7"
-            }
-          },
-          {
-            "Type": "Image",
-            "Name": "imgHumi",
-            "X": 142,
-            "Y": 82,
-            "Width": 64,
-            "Height": 64,
-            "RelativeFilename": "humidity.png"
-          },
-          {
-            "Type": "Shape",
-            "Name": "bgTemp",
-            "X": 15,
-            "Y": 75,
-            "Width": 100,
-            "Height": 100,
-            "Color": {
-              "Red": 255,
-              "Green": 90,
-              "Blue": 90
-            },
-            "Points": [
-              {
-                "X": 85.0
-              },
-              {
-                "X": 91.0,
-                "Y": 1.0
-              },
-              {
-                "X": 96.0,
-                "Y": 4.0
-              },
-              {
-                "X": 99.0,
-                "Y": 9.0
-              },
-              {
-                "X": 100.0,
-                "Y": 15.0
-              },
-              {
-                "X": 100.0,
-                "Y": 85.0
-              },
-              {
-                "X": 99.0,
-                "Y": 91.0
-              },
-              {
-                "X": 96.0,
-                "Y": 96.0
-              },
-              {
-                "X": 91.0,
-                "Y": 99.0
-              },
-              {
-                "X": 85.0,
-                "Y": 100.0
-              },
-              {
-                "X": 15.0,
-                "Y": 100.0
-              },
-              {
-                "X": 9.0,
-                "Y": 99.0
-              },
-              {
-                "X": 4.0,
-                "Y": 96.0
-              },
-              {
-                "X": 1.0,
-                "Y": 91.0
-              },
-              {
-                "Y": 85.0
-              },
-              {
-                "Y": 15.0
-              },
-              {
-                "X": 1.0,
-                "Y": 9.0
-              },
-              {
-                "X": 4.0,
-                "Y": 4.0
-              },
-              {
-                "X": 9.0,
-                "Y": 1.0
-              },
-              {
-                "X": 15.0
-              }
-            ],
-            "XScale": 1.0,
-            "YScale": 1.0
-          },
-          {
-            "Type": "TextArea",
-            "Name": "txtTemp",
-            "X": 30,
-            "Y": 149,
-            "Width": 71,
-            "Height": 24,
-            "TextId": "__SingleUse_5PQS",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true,
-            "Wildcard1": {
-              "TextId": "__SingleUse_249U"
-            },
-            "Wildcard2": {
-              "TextId": "__SingleUse_DX7U"
-            }
-          },
-          {
-            "Type": "Image",
-            "Name": "imgTemp",
-            "X": 33,
-            "Y": 82,
-            "Width": 64,
-            "Height": 64,
-            "RelativeFilename": "temperature.png"
-          },
-          {
-            "Type": "TextArea",
-            "Name": "txtTitle",
-            "X": 15,
-            "Y": 40,
-            "Width": 162,
-            "Height": 24,
-            "TextId": "__SingleUse_574N",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true
-          },
-          {
             "Type": "TextArea",
             "Name": "txtTime",
             "X": 174,
@@ -539,9 +46,1705 @@
             "Width": 24,
             "Height": 24,
             "RelativeFilename": "wifi.png"
+          },
+          {
+            "Type": "SwipeContainer",
+            "Name": "swipeMainAuth",
+            "Width": 240,
+            "Height": 320,
+            "SwipeCutoff": 50,
+            "ShowPageIndicator": true,
+            "PageIndicatorX": 100,
+            "PageIndicatorY": 300,
+            "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_off_normal.png",
+            "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_on_action.png",
+            "EndSwipeElasticWidth": 50,
+            "SelectedPage": "pageDashboard",
+            "Preset": "alternate_theme\\presets\\swipecontainer\\medium_action.json",
+            "Components": [
+              {
+                "Type": "Container",
+                "Name": "pageDashboard",
+                "Width": 240,
+                "Height": 320,
+                "Components": [
+                  {
+                    "Type": "Shape",
+                    "Name": "bgWeather",
+                    "X": 125,
+                    "Y": 185,
+                    "Width": 100,
+                    "Height": 100,
+                    "Color": {
+                      "Red": 6,
+                      "Green": 214,
+                      "Blue": 160
+                    },
+                    "Points": [
+                      {
+                        "X": 85.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 85.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 85.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 15.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "Y": 85.0
+                      },
+                      {
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 15.0
+                      }
+                    ],
+                    "XScale": 1.0,
+                    "YScale": 1.0
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtWeather",
+                    "X": 149,
+                    "Y": 259,
+                    "Width": 52,
+                    "Height": 24,
+                    "TextId": "__SingleUse_RLLE",
+                    "TextRotation": "0",
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_CI9I"
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "imgWeather",
+                    "X": 142,
+                    "Y": 192,
+                    "Width": 64,
+                    "Height": 64,
+                    "RelativeFilename": "weather.png"
+                  },
+                  {
+                    "Type": "Shape",
+                    "Name": "bgBright",
+                    "X": 15,
+                    "Y": 185,
+                    "Width": 100,
+                    "Height": 100,
+                    "Color": {
+                      "Red": 255,
+                      "Green": 209,
+                      "Blue": 102
+                    },
+                    "Points": [
+                      {
+                        "X": 85.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 85.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 85.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 15.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "Y": 85.0
+                      },
+                      {
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 15.0
+                      }
+                    ],
+                    "XScale": 1.0,
+                    "YScale": 1.0
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtBright",
+                    "X": 35,
+                    "Y": 259,
+                    "Width": 61,
+                    "Height": 24,
+                    "TextId": "__SingleUse_ZDXE",
+                    "TextRotation": "0",
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_9RX5"
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "imgBright",
+                    "X": 33,
+                    "Y": 192,
+                    "Width": 64,
+                    "Height": 64,
+                    "RelativeFilename": "brightness.png"
+                  },
+                  {
+                    "Type": "Shape",
+                    "Name": "bgHumi",
+                    "X": 125,
+                    "Y": 75,
+                    "Width": 100,
+                    "Height": 100,
+                    "Color": {
+                      "Red": 20,
+                      "Green": 126,
+                      "Blue": 223
+                    },
+                    "Points": [
+                      {
+                        "X": 85.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 85.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 85.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 15.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "Y": 85.0
+                      },
+                      {
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 15.0
+                      }
+                    ],
+                    "XScale": 1.0,
+                    "YScale": 1.0
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtHumi",
+                    "X": 145,
+                    "Y": 149,
+                    "Width": 61,
+                    "Height": 24,
+                    "TextId": "__SingleUse_5VEP",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_WGG7"
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "imgHumi",
+                    "X": 142,
+                    "Y": 82,
+                    "Width": 64,
+                    "Height": 64,
+                    "RelativeFilename": "humidity.png"
+                  },
+                  {
+                    "Type": "Shape",
+                    "Name": "bgTemp",
+                    "X": 15,
+                    "Y": 75,
+                    "Width": 100,
+                    "Height": 100,
+                    "Color": {
+                      "Red": 255,
+                      "Green": 90,
+                      "Blue": 90
+                    },
+                    "Points": [
+                      {
+                        "X": 85.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 85.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 85.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 15.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "Y": 85.0
+                      },
+                      {
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 15.0
+                      }
+                    ],
+                    "XScale": 1.0,
+                    "YScale": 1.0
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtTemp",
+                    "X": 30,
+                    "Y": 149,
+                    "Width": 71,
+                    "Height": 24,
+                    "TextId": "__SingleUse_5PQS",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_249U"
+                    },
+                    "Wildcard2": {
+                      "TextId": "__SingleUse_DX7U"
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "imgTemp",
+                    "X": 33,
+                    "Y": 82,
+                    "Width": 64,
+                    "Height": 64,
+                    "RelativeFilename": "temperature.png"
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtTitle1",
+                    "X": 15,
+                    "Y": 40,
+                    "Width": 162,
+                    "Height": 24,
+                    "TextId": "__SingleUse_574N",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "pageLoginSelect",
+                "Width": 240,
+                "Height": 320,
+                "Components": [
+                  {
+                    "Type": "Shape",
+                    "Name": "bgPass",
+                    "X": 125,
+                    "Y": 110,
+                    "Width": 100,
+                    "Height": 100,
+                    "Color": {
+                      "Red": 6,
+                      "Green": 214,
+                      "Blue": 160
+                    },
+                    "Points": [
+                      {
+                        "X": 85.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 85.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 85.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 15.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "Y": 85.0
+                      },
+                      {
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 15.0
+                      }
+                    ],
+                    "XScale": 1.0,
+                    "YScale": 1.0
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtPass",
+                    "X": 129,
+                    "Y": 185,
+                    "Width": 93,
+                    "Height": 24,
+                    "TextId": "__SingleUse_MJJ1",
+                    "TextRotation": "0",
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "imgPass",
+                    "X": 142,
+                    "Y": 117,
+                    "Width": 64,
+                    "Height": 64,
+                    "RelativeFilename": "password.png"
+                  },
+                  {
+                    "Type": "FlexButton",
+                    "Name": "btnPass",
+                    "X": 125,
+                    "Y": 110,
+                    "Width": 100,
+                    "Height": 100,
+                    "Alpha": 0,
+                    "ButtonTrigger": {
+                      "Type": "ClickButtonTrigger"
+                    },
+                    "ButtonStyles": [
+                      {
+                        "Type": "BoxWithBorderButtonStyle",
+                        "Width": 100,
+                        "Height": 100,
+                        "LockToFlexButtonSize": true,
+                        "BorderSize": 5,
+                        "ColorReleased": {
+                          "Green": 102,
+                          "Blue": 153
+                        },
+                        "ColorPressed": {
+                          "Green": 153,
+                          "Blue": 204
+                        },
+                        "ColorBorderReleased": {
+                          "Green": 51,
+                          "Blue": 102
+                        },
+                        "ColorBorderPressed": {
+                          "Red": 51,
+                          "Green": 102,
+                          "Blue": 153
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Shape",
+                    "Name": "bgCard",
+                    "X": 15,
+                    "Y": 110,
+                    "Width": 100,
+                    "Height": 100,
+                    "Color": {
+                      "Red": 20,
+                      "Green": 126,
+                      "Blue": 223
+                    },
+                    "Points": [
+                      {
+                        "X": 85.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 85.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 85.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 15.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "Y": 85.0
+                      },
+                      {
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 15.0
+                      }
+                    ],
+                    "XScale": 1.0,
+                    "YScale": 1.0
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtCard",
+                    "X": 42,
+                    "Y": 185,
+                    "Width": 47,
+                    "Height": 24,
+                    "TextId": "__SingleUse_RVSY",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "imgCard",
+                    "X": 33,
+                    "Y": 117,
+                    "Width": 64,
+                    "Height": 64,
+                    "RelativeFilename": "card.png"
+                  },
+                  {
+                    "Type": "FlexButton",
+                    "Name": "btnCard",
+                    "X": 15,
+                    "Y": 110,
+                    "Width": 100,
+                    "Height": 100,
+                    "Alpha": 0,
+                    "ButtonTrigger": {
+                      "Type": "ClickButtonTrigger"
+                    },
+                    "ButtonStyles": [
+                      {
+                        "Type": "BoxWithBorderButtonStyle",
+                        "Width": 100,
+                        "Height": 100,
+                        "LockToFlexButtonSize": true,
+                        "BorderSize": 5,
+                        "ColorReleased": {
+                          "Green": 102,
+                          "Blue": 153
+                        },
+                        "ColorPressed": {
+                          "Green": 153,
+                          "Blue": 204
+                        },
+                        "ColorBorderReleased": {
+                          "Green": 51,
+                          "Blue": 102
+                        },
+                        "ColorBorderPressed": {
+                          "Red": 51,
+                          "Green": 102,
+                          "Blue": 153
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtTitle2",
+                    "X": 15,
+                    "Y": 40,
+                    "Width": 146,
+                    "Height": 24,
+                    "TextId": "__SingleUse_U2WX",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true
+                  }
+                ]
+              }
+            ]
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "intAuthToCard",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btnCard"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "CardScreen"
+            }
+          },
+          {
+            "InteractionName": "intAuthToPass",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btnPass"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "PasswordScreen"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "HomeActiveScreen",
+        "CanvasBufferSize": 3600,
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "bgMain",
+            "Width": 240,
+            "Height": 320,
+            "Color": {
+              "Red": 30,
+              "Green": 30,
+              "Blue": 30
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "txtTime",
+            "X": 174,
+            "Y": 2,
+            "Width": 61,
+            "Height": 24,
+            "TextId": "__SingleUse_W2NW",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_UOGS"
+            },
+            "Wildcard2": {
+              "TextId": "__SingleUse_MCNL"
+            }
+          },
+          {
+            "Type": "Image",
+            "Name": "imgWifi",
+            "X": 5,
+            "Y": 3,
+            "Width": 24,
+            "Height": 24,
+            "RelativeFilename": "wifi.png"
+          },
+          {
+            "Type": "SwipeContainer",
+            "Name": "swipeActiveHome",
+            "Width": 240,
+            "Height": 320,
+            "SwipeCutoff": 50,
+            "ShowPageIndicator": true,
+            "PageIndicatorX": 90,
+            "PageIndicatorY": 300,
+            "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_off_normal.png",
+            "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_on_action.png",
+            "EndSwipeElasticWidth": 50,
+            "SelectedPage": "pageActiveDashboard",
+            "Preset": "alternate_theme\\presets\\swipecontainer\\medium_action.json",
+            "Components": [
+              {
+                "Type": "Container",
+                "Name": "pageActiveDashboard",
+                "Width": 240,
+                "Height": 320,
+                "Components": [
+                  {
+                    "Type": "Shape",
+                    "Name": "bgWeather",
+                    "X": 125,
+                    "Y": 185,
+                    "Width": 100,
+                    "Height": 100,
+                    "Color": {
+                      "Red": 6,
+                      "Green": 214,
+                      "Blue": 160
+                    },
+                    "Points": [
+                      {
+                        "X": 85.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 85.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 85.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 15.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "Y": 85.0
+                      },
+                      {
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 15.0
+                      }
+                    ],
+                    "XScale": 1.0,
+                    "YScale": 1.0
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtWeather",
+                    "X": 149,
+                    "Y": 259,
+                    "Width": 52,
+                    "Height": 24,
+                    "TextId": "__SingleUse_U6GV",
+                    "TextRotation": "0",
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_KB4M"
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "imgWeather",
+                    "X": 142,
+                    "Y": 192,
+                    "Width": 64,
+                    "Height": 64,
+                    "RelativeFilename": "weather.png"
+                  },
+                  {
+                    "Type": "Shape",
+                    "Name": "bgBright",
+                    "X": 15,
+                    "Y": 185,
+                    "Width": 100,
+                    "Height": 100,
+                    "Color": {
+                      "Red": 255,
+                      "Green": 209,
+                      "Blue": 102
+                    },
+                    "Points": [
+                      {
+                        "X": 85.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 85.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 85.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 15.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "Y": 85.0
+                      },
+                      {
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 15.0
+                      }
+                    ],
+                    "XScale": 1.0,
+                    "YScale": 1.0
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtBright",
+                    "X": 35,
+                    "Y": 259,
+                    "Width": 61,
+                    "Height": 24,
+                    "TextId": "__SingleUse_6RNO",
+                    "TextRotation": "0",
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_SD4W"
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "imgBright",
+                    "X": 33,
+                    "Y": 192,
+                    "Width": 64,
+                    "Height": 64,
+                    "RelativeFilename": "brightness.png"
+                  },
+                  {
+                    "Type": "Shape",
+                    "Name": "bgHumi",
+                    "X": 125,
+                    "Y": 75,
+                    "Width": 100,
+                    "Height": 100,
+                    "Color": {
+                      "Red": 20,
+                      "Green": 126,
+                      "Blue": 223
+                    },
+                    "Points": [
+                      {
+                        "X": 85.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 85.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 85.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 15.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "Y": 85.0
+                      },
+                      {
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 15.0
+                      }
+                    ],
+                    "XScale": 1.0,
+                    "YScale": 1.0
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtHumi",
+                    "X": 145,
+                    "Y": 149,
+                    "Width": 61,
+                    "Height": 24,
+                    "TextId": "__SingleUse_Z73V",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_L6LD"
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "imgHumi",
+                    "X": 142,
+                    "Y": 82,
+                    "Width": 64,
+                    "Height": 64,
+                    "RelativeFilename": "humidity.png"
+                  },
+                  {
+                    "Type": "Shape",
+                    "Name": "bgTemp",
+                    "X": 15,
+                    "Y": 75,
+                    "Width": 100,
+                    "Height": 100,
+                    "Color": {
+                      "Red": 255,
+                      "Green": 90,
+                      "Blue": 90
+                    },
+                    "Points": [
+                      {
+                        "X": 85.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 100.0,
+                        "Y": 85.0
+                      },
+                      {
+                        "X": 99.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "X": 96.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 91.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 85.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 15.0,
+                        "Y": 100.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 99.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 96.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 91.0
+                      },
+                      {
+                        "Y": 85.0
+                      },
+                      {
+                        "Y": 15.0
+                      },
+                      {
+                        "X": 1.0,
+                        "Y": 9.0
+                      },
+                      {
+                        "X": 4.0,
+                        "Y": 4.0
+                      },
+                      {
+                        "X": 9.0,
+                        "Y": 1.0
+                      },
+                      {
+                        "X": 15.0
+                      }
+                    ],
+                    "XScale": 1.0,
+                    "YScale": 1.0
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtTemp",
+                    "X": 30,
+                    "Y": 149,
+                    "Width": 71,
+                    "Height": 24,
+                    "TextId": "__SingleUse_CWFA",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_6Y3S"
+                    },
+                    "Wildcard2": {
+                      "TextId": "__SingleUse_Q6S4"
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "imgTemp",
+                    "X": 33,
+                    "Y": 82,
+                    "Width": 64,
+                    "Height": 64,
+                    "RelativeFilename": "temperature.png"
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtTitle1",
+                    "X": 15,
+                    "Y": 40,
+                    "Width": 162,
+                    "Height": 24,
+                    "TextId": "__SingleUse_G3WF",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "pageSetting",
+                "Width": 240,
+                "Height": 320,
+                "Components": [
+                  {
+                    "Type": "ToggleButton",
+                    "Name": "btnAlert",
+                    "X": 162,
+                    "Y": 220,
+                    "Width": 62,
+                    "Height": 34,
+                    "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_on_action.png",
+                    "Released": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_off_normal.png"
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtAlert",
+                    "X": 15,
+                    "Y": 225,
+                    "Width": 48,
+                    "Height": 24,
+                    "TextId": "__SingleUse_W4C4",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "ToggleButton",
+                    "Name": "btnLight",
+                    "X": 162,
+                    "Y": 175,
+                    "Width": 62,
+                    "Height": 34,
+                    "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_on_action.png",
+                    "Released": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_off_normal.png"
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtLight",
+                    "X": 15,
+                    "Y": 180,
+                    "Width": 49,
+                    "Height": 24,
+                    "TextId": "__SingleUse_XG7K",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "ToggleButton",
+                    "Name": "btnWindow",
+                    "X": 162,
+                    "Y": 130,
+                    "Width": 62,
+                    "Height": 34,
+                    "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_on_action.png",
+                    "Released": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_off_normal.png"
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtWindow",
+                    "X": 15,
+                    "Y": 135,
+                    "Width": 78,
+                    "Height": 24,
+                    "TextId": "__SingleUse_INJG",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "ToggleButton",
+                    "Name": "btnAutoMode",
+                    "X": 162,
+                    "Y": 85,
+                    "Width": 62,
+                    "Height": 34,
+                    "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_off_normal.png",
+                    "Released": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_on_action.png"
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtAutoMode",
+                    "X": 15,
+                    "Y": 90,
+                    "Width": 107,
+                    "Height": 24,
+                    "TextId": "__SingleUse_1Y7X",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtTitle2",
+                    "X": 15,
+                    "Y": 40,
+                    "Width": 72,
+                    "Height": 24,
+                    "TextId": "__SingleUse_SEDU",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "pageSecurity",
+                "Width": 240,
+                "Height": 320,
+                "Components": [
+                  {
+                    "Type": "BoxWithBorder",
+                    "Name": "boxWarning",
+                    "X": 15,
+                    "Y": 170,
+                    "Width": 210,
+                    "Height": 110,
+                    "Color": {
+                      "Red": 30,
+                      "Green": 30,
+                      "Blue": 30
+                    },
+                    "BorderColor": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "BorderSize": 2
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtWarning",
+                    "X": 25,
+                    "Y": 176,
+                    "Width": 175,
+                    "Height": 24,
+                    "TextId": "__SingleUse_WSU1",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Green": 255
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "Box",
+                    "Name": "bgStatus",
+                    "X": 120,
+                    "Y": 123,
+                    "Width": 105,
+                    "Height": 37,
+                    "Color": {
+                      "Green": 255
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtStatusValue",
+                    "X": 150,
+                    "Y": 129,
+                    "Width": 45,
+                    "Height": 24,
+                    "TextId": "__SingleUse_MCVB",
+                    "TextRotation": "0",
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtStatus",
+                    "X": 15,
+                    "Y": 130,
+                    "Width": 65,
+                    "Height": 24,
+                    "TextId": "__SingleUse_JEUF",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "ToggleButton",
+                    "Name": "btnHomeMode",
+                    "X": 163,
+                    "Y": 80,
+                    "Width": 62,
+                    "Height": 34,
+                    "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_off_normal.png",
+                    "Released": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_on_action.png"
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtHomeMode",
+                    "X": 15,
+                    "Y": 85,
+                    "Width": 118,
+                    "Height": 24,
+                    "TextId": "__SingleUse_1KVF",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "txtTitle3",
+                    "X": 15,
+                    "Y": 40,
+                    "Width": 177,
+                    "Height": 24,
+                    "TextId": "__SingleUse_GILD",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 255,
+                      "Blue": 255
+                    },
+                    "AutoSize": true
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "intActivateSecurity",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btnHomeMode"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "activateSecurityMode"
+            }
+          }
+        ]
       },
       {
         "Name": "AuthScreen",
@@ -913,7 +2116,32 @@
             "RelativeFilename": "wifi.png"
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "intAuthToCard",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btnCard"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "CardScreen"
+            }
+          },
+          {
+            "InteractionName": "intAuthToPass",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btnPass"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "PasswordScreen"
+            }
+          }
+        ]
       },
       {
         "Name": "CardScreen",
@@ -1055,7 +2283,20 @@
             "RelativeFilename": "wifi.png"
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "intCardToAuth",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btnCancel"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "AuthScreen"
+            }
+          }
+        ]
       },
       {
         "Name": "PasswordScreen",
@@ -1466,7 +2707,31 @@
             "RelativeFilename": "wifi.png"
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "intPassToAuth",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btnCancel"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "AuthScreen"
+            }
+          },
+          {
+            "InteractionName": "intBtnEnterClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btnEnter"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "checkPassword"
+            }
+          }
+        ]
       },
       {
         "Name": "SettingScreen",
@@ -1481,31 +2746,6 @@
               "Green": 30,
               "Blue": 30
             }
-          },
-          {
-            "Type": "ToggleButton",
-            "Name": "btnLight",
-            "X": 162,
-            "Y": 175,
-            "Width": 62,
-            "Height": 34,
-            "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_on_action.png",
-            "Released": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_off_normal.png"
-          },
-          {
-            "Type": "TextArea",
-            "Name": "txtLight",
-            "X": 15,
-            "Y": 180,
-            "Width": 49,
-            "Height": 24,
-            "TextId": "__SingleUse_9CJD",
-            "TextRotation": "0",
-            "Color": {
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true
           },
           {
             "Type": "ToggleButton",
@@ -1525,6 +2765,31 @@
             "Width": 48,
             "Height": 24,
             "TextId": "__SingleUse_7K91",
+            "TextRotation": "0",
+            "Color": {
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "ToggleButton",
+            "Name": "btnLight",
+            "X": 162,
+            "Y": 175,
+            "Width": 62,
+            "Height": 34,
+            "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_on_action.png",
+            "Released": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_off_normal.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "txtLight",
+            "X": 15,
+            "Y": 180,
+            "Width": 49,
+            "Height": 24,
+            "TextId": "__SingleUse_9CJD",
             "TextRotation": "0",
             "Color": {
               "Green": 255,
@@ -1647,24 +2912,6 @@
             }
           },
           {
-            "Type": "TextArea",
-            "Name": "txtNoti",
-            "X": 15,
-            "Y": 290,
-            "Width": 80,
-            "Height": 15,
-            "TextId": "__SingleUse_ALDQ",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255
-            },
-            "AutoSize": true,
-            "Wildcard1": {
-              "TextId": "__SingleUse_WE0B"
-            }
-          },
-          {
             "Type": "BoxWithBorder",
             "Name": "boxWarning",
             "X": 15,
@@ -1722,7 +2969,7 @@
           {
             "Type": "TextArea",
             "Name": "txtStatus",
-            "X": 17,
+            "X": 15,
             "Y": 130,
             "Width": 65,
             "Height": 24,
@@ -1807,7 +3054,19 @@
             "RelativeFilename": "wifi.png"
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "intActivateSecurity",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btnHomeMode"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "activateSecurityMode"
+            }
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],

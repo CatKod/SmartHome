@@ -6,6 +6,84 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_XG7K" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Light</Translation>
+      </Text>
+      <Text Id="__SingleUse_WSU1" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Everything is fine</Translation>
+      </Text>
+      <Text Id="__SingleUse_MCVB" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Safe</Translation>
+      </Text>
+      <Text Id="__SingleUse_JEUF" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Status</Translation>
+      </Text>
+      <Text Id="__SingleUse_1KVF" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Home Mode</Translation>
+      </Text>
+      <Text Id="__SingleUse_GILD" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Security &amp; Safety</Translation>
+      </Text>
+      <Text Id="__SingleUse_W4C4" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Alert</Translation>
+      </Text>
+      <Text Id="__SingleUse_INJG" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Window</Translation>
+      </Text>
+      <Text Id="__SingleUse_1Y7X" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Auto Mode</Translation>
+      </Text>
+      <Text Id="__SingleUse_SEDU" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Setting</Translation>
+      </Text>
+      <Text Id="__SingleUse_G3WF" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Welcome Home!</Translation>
+      </Text>
+      <Text Id="__SingleUse_Q6S4" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_6Y3S" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_CWFA" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;.&lt;value&gt;°C</Translation>
+      </Text>
+      <Text Id="__SingleUse_L6LD" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">000</Translation>
+      </Text>
+      <Text Id="__SingleUse_Z73V" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;%</Translation>
+      </Text>
+      <Text Id="__SingleUse_SD4W" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">000</Translation>
+      </Text>
+      <Text Id="__SingleUse_6RNO" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;%</Translation>
+      </Text>
+      <Text Id="__SingleUse_KB4M" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Good</Translation>
+      </Text>
+      <Text Id="__SingleUse_U6GV" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_MCNL" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_UOGS" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_W2NW" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;:&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_MJJ1" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Password</Translation>
+      </Text>
+      <Text Id="__SingleUse_RVSY" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Card</Translation>
+      </Text>
+      <Text Id="__SingleUse_U2WX" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Authentication</Translation>
+      </Text>
       <Text Id="__SingleUse_U1GM" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Safe</Translation>
       </Text>
@@ -14,12 +92,6 @@
       </Text>
       <Text Id="__SingleUse_YNB3" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Status</Translation>
-      </Text>
-      <Text Id="__SingleUse_WE0B" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">10</Translation>
-      </Text>
-      <Text Id="__SingleUse_ALDQ" Alignment="Left" TypographyId="Medium">
-        <Translation Language="GB">Exit in &lt;value&gt;s</Translation>
       </Text>
       <Text Id="__SingleUse_9CJD" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Light</Translation>

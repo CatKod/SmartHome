@@ -83,14 +83,16 @@ typedef struct
   SystemMode_t mode;
   LockState_t  lock;
   WindowState_t window;
-  uint8_t      light_on;
-  LightSource_t light_source;
+  uint8_t      hall_light_on;    /* RELAY_1: den hanh lang (PIR + anh sang) */
+  uint8_t      room_light_on;    /* RELAY_2: den phong (vo tay / MQTT) */
+  LightSource_t hall_light_source;
+  LightSource_t room_light_source;
   uint8_t      alarm_active;
   uint8_t      risk_score;
 
   uint32_t lock_release_deadline;
-  uint32_t light_manual_until;
-  uint32_t light_motion_deadline;
+  uint32_t hall_light_motion_deadline;
+  uint32_t room_light_manual_until;
   uint32_t mode_deadline;
   uint32_t auth_lockout_until;
   uint8_t  auth_fail_count;

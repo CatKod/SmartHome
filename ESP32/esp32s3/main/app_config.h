@@ -31,7 +31,9 @@
 #define APP_MQTT_TOPIC_STATE_MODE   "smarthome/state/mode"
 #define APP_MQTT_TOPIC_STATE_LOCK   "smarthome/state/lock"
 #define APP_MQTT_TOPIC_STATE_WINDOW "smarthome/state/window"
-#define APP_MQTT_TOPIC_STATE_LIGHT  "smarthome/state/light"
+#define APP_MQTT_TOPIC_STATE_HALL_LIGHT "smarthome/state/hall_light"
+#define APP_MQTT_TOPIC_STATE_ROOM_LIGHT "smarthome/state/room_light"
+#define APP_MQTT_TOPIC_STATE_LIGHT      "smarthome/state/room_light"  /* alias: den phong */
 #define APP_MQTT_TOPIC_STATE_ALARM  "smarthome/state/alarm"
 #define APP_MQTT_TOPIC_EVENT        "smarthome/event"
 #define APP_MQTT_TOPIC_CMD          "smarthome/cmd"

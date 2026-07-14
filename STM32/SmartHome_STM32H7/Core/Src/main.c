@@ -14,9 +14,42 @@
 #include "gpio.h"
 #include "system_logic.h"
 #include "uart_link.h"
+#include "sn74hc595.h"
+#include "stepper_28byj.h"
+
+/* Dat 1 de test LED 74HC595 + stepper luc boot; dat 0 khi chay he thong binh thuong */
+#define BOOT_HW_TEST  0
 
 void SystemClock_Config(void);
 static void MPU_Config(void);
+
+#if BOOT_HW_TEST
+/**
+ * @brief Test nhanh phan cung truoc khi vao System_Loop().
+ *        - 74HC595: quet tung LED (bit0..bit7), sau do tat het.
+ *        - 28BYJ-48: quay CW 512 buoc, dung 500 ms, quay CCW ve.
+ */
+static void Boot_HwTest(void)
+{
+  /* --- Test 74HC595: quet 8 LED trang thai --- */
+  for (uint8_t i = 0; i < 8U; i++)
+  {
+    HC595_Write((uint8_t)(1U << i));
+    HAL_Delay(250);
+  }
+  HC595_Write(0xFFU);   /* Tat ca LED sang */
+  HAL_Delay(400);
+  HC595_Write(0x00U);   /* Tat het */
+  HAL_Delay(300);
+
+  /* --- Test stepper: quay thuan / nguoc (blocking) --- */
+  Stepper_RotateSteps(512U, STEPPER_CW);
+  HAL_Delay(500);
+  Stepper_RotateSteps(512U, STEPPER_CCW);
+  Stepper_Release();
+  HAL_Delay(300);
+}
+#endif
 
 int main(void)
 {
@@ -33,6 +66,10 @@ int main(void)
   MX_USART3_UART_Init();
 
   System_Init();
+
+#if BOOT_HW_TEST
+  Boot_HwTest();
+#endif
 
   while (1)
   {

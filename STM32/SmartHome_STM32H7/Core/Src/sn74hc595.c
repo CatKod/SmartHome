@@ -14,13 +14,17 @@
 static inline void HC595_ClockPulse(void)
 {
   HAL_GPIO_WritePin(SN74HC595N_SH_CP_GPIO_Port, SN74HC595N_SH_CP_Pin, GPIO_PIN_SET);
+  __NOP(); __NOP(); __NOP(); __NOP(); __NOP(); __NOP();
   HAL_GPIO_WritePin(SN74HC595N_SH_CP_GPIO_Port, SN74HC595N_SH_CP_Pin, GPIO_PIN_RESET);
+  __NOP(); __NOP(); __NOP(); __NOP();
 }
 
 static inline void HC595_Latch(void)
 {
   HAL_GPIO_WritePin(SN74HC595N_ST_CP_GPIO_Port, SN74HC595N_ST_CP_Pin, GPIO_PIN_SET);
+  __NOP(); __NOP(); __NOP(); __NOP(); __NOP(); __NOP();
   HAL_GPIO_WritePin(SN74HC595N_ST_CP_GPIO_Port, SN74HC595N_ST_CP_Pin, GPIO_PIN_RESET);
+  __NOP(); __NOP(); __NOP(); __NOP();
 }
 
 static void HC595_ShiftByte(uint8_t data)

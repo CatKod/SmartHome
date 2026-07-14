@@ -1,5 +1,5 @@
-../Core/Src/light_sensor.c:18:6:LightSensor_Init	2
-../Core/Src/light_sensor.c:30:19:LightSensor_ReadRaw	4
-../Core/Src/light_sensor.c:67:9:LightSensor_GetStatus	5
-../Core/Src/light_sensor.c:96:9:LightSensor_GetPercent	5
-../Core/Src/light_sensor.c:123:9:LightSensor_GetLevel	13
+../Core/Src/light_sensor.c:20:6:LightSensor_Init	2
+../Core/Src/light_sensor.c:32:19:LightSensor_ReadRaw	4
+../Core/Src/light_sensor.c:70:9:LightSensor_GetStatus	5
+../Core/Src/light_sensor.c:99:9:LightSensor_GetPercent	5
+../Core/Src/light_sensor.c:126:9:LightSensor_GetLevel	13

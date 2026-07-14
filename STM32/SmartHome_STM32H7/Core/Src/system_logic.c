@@ -128,7 +128,7 @@ static void System_SendData(void)
   uint8_t light_pct = 100U - (uint8_t)((uint32_t)g_system.light_raw * 100U / 65535U);
 
   snprintf(payload, sizeof(payload),
-           "DATA,%.1f,%u,%u,%s,%u,%u,%u,%u,%s,%s,%s,%s,%u,%u",
+           "DATA,%.1f,%u,%u,%s,%u,%u,%u,%u,%s,%s,%s,%s,%s,%u,%u",
            temp,
            (unsigned)g_system.humi,
            (unsigned)light_pct,
@@ -140,18 +140,15 @@ static void System_SendData(void)
            LockToStr(g_system.lock),
            WindowToStr(g_system.window),
            ModeToStr(g_system.mode),
-           g_system.light_on ? "ON" : "OFF",
+           g_system.hall_light_on ? "ON" : "OFF",
+           g_system.room_light_on ? "ON" : "OFF",
            (unsigned)g_system.alarm_active,
            (unsigned)g_system.risk_score);
   (void)UartLink_SendPayload(payload);
 }
 
-static void System_SetLight(SystemData_t *sys, uint8_t on, LightSource_t src)
+static void System_SetHallLight(SystemData_t *sys, uint8_t on, LightSource_t src)
 {
-  if (sys->mode == MODE_ALARM && on != 0U)
-  {
-    return;
-  }
   if (on != 0U)
   {
     Relay_On(RELAY_1);
@@ -161,19 +158,55 @@ static void System_SetLight(SystemData_t *sys, uint8_t on, LightSource_t src)
     Relay_Off(RELAY_1);
   }
   sys->relay[RELAY_1] = on;
-  if (sys->light_on != on)
+  if (sys->hall_light_on != on)
   {
-    sys->light_on = on;
-    sys->light_source = src;
+    sys->hall_light_on = on;
+    sys->hall_light_source = src;
     char body[64];
-    snprintf(body, sizeof(body), "LIGHT,%s,SRC,%u", on ? "ON" : "OFF", (unsigned)src);
+    snprintf(body, sizeof(body), "HALL_LIGHT,%s,SRC,%u", on ? "ON" : "OFF", (unsigned)src);
     System_SendEvt(body);
   }
   else
   {
-    sys->light_on = on;
-    sys->light_source = src;
+    sys->hall_light_on = on;
+    sys->hall_light_source = src;
   }
+}
+
+static void System_SetRoomLight(SystemData_t *sys, uint8_t on, LightSource_t src)
+{
+  if (sys->mode == MODE_ALARM && on != 0U)
+  {
+    return;
+  }
+  if (on != 0U)
+  {
+    Relay_On(RELAY_2);
+  }
+  else
+  {
+    Relay_Off(RELAY_2);
+  }
+  sys->relay[RELAY_2] = on;
+  if (sys->room_light_on != on)
+  {
+    sys->room_light_on = on;
+    sys->room_light_source = src;
+    char body[64];
+    snprintf(body, sizeof(body), "ROOM_LIGHT,%s,SRC,%u", on ? "ON" : "OFF", (unsigned)src);
+    System_SendEvt(body);
+  }
+  else
+  {
+    sys->room_light_on = on;
+    sys->room_light_source = src;
+  }
+}
+
+static void System_ForceAllLightsOff(SystemData_t *sys, LightSource_t src)
+{
+  System_SetHallLight(sys, 0U, src);
+  System_SetRoomLight(sys, 0U, src);
 }
 
 static void System_SetLock(SystemData_t *sys, LockState_t lock)
@@ -262,7 +295,7 @@ static void System_EnterAlarm(SystemData_t *sys)
   sys->mode = MODE_ALARM;
   sys->alarm_active = 1U;
   System_SetLock(sys, LOCK_ENGAGED);
-  System_SetLight(sys, 0U, LIGHT_SRC_ALARM);
+  System_ForceAllLightsOff(sys, LIGHT_SRC_ALARM);
   System_SendEvt("ALARM,ACTIVATED");
 }
 
@@ -326,7 +359,7 @@ static void System_ActivateSecurity(SystemData_t *sys)
 {
   sys->mode = MODE_SECURITY;
   sys->risk_score = 0U;
-  System_SetLight(sys, 0U, LIGHT_SRC_SECURITY);
+  System_ForceAllLightsOff(sys, LIGHT_SRC_SECURITY);
   System_SetLock(sys, LOCK_ENGAGED);
   if (sys->window != WINDOW_CLOSED)
   {
@@ -455,31 +488,27 @@ static void System_ProcessClap(SystemData_t *sys)
   {
     if (s_clap_count == 2U)
     {
-      System_SetLight(sys, 0U, LIGHT_SRC_DOUBLE_CLAP);
-      sys->light_manual_until = now + LIGHT_MANUAL_OVERRIDE_MS;
+      System_SetRoomLight(sys, 0U, LIGHT_SRC_DOUBLE_CLAP);
+      sys->room_light_manual_until = now + ROOM_LIGHT_MANUAL_OVERRIDE_MS;
     }
     else if (s_clap_count == 3U)
     {
-      System_SetLight(sys, 1U, LIGHT_SRC_TRIPLE_CLAP);
-      sys->light_manual_until = now + LIGHT_MANUAL_OVERRIDE_MS;
+      System_SetRoomLight(sys, 1U, LIGHT_SRC_TRIPLE_CLAP);
+      sys->room_light_manual_until = now + ROOM_LIGHT_MANUAL_OVERRIDE_MS;
     }
     s_clap_count = 0U;
     s_clap_window_start = 0U;
   }
 }
 
-static void System_ProcessAutoLight(SystemData_t *sys)
+static void System_ProcessAutoHallLight(SystemData_t *sys)
 {
   uint32_t now = HAL_GetTick();
 
-  if (sys->mode == MODE_ALARM)
+  if (sys->mode == MODE_ALARM || sys->mode == MODE_SECURITY ||
+      sys->mode == MODE_SUSPICIOUS || sys->mode == MODE_SECURITY_EXIT_DELAY)
   {
-    System_SetLight(sys, 0U, LIGHT_SRC_ALARM);
-    return;
-  }
-
-  if (sys->light_manual_until > now)
-  {
+    System_SetHallLight(sys, 0U, LIGHT_SRC_SECURITY);
     return;
   }
 
@@ -492,19 +521,19 @@ static void System_ProcessAutoLight(SystemData_t *sys)
 
   if (sys->motion != 0U && dark_enough != 0U)
   {
-    sys->light_motion_deadline = now + LIGHT_HOLD_MS;
-    if (sys->light_on == 0U)
+    sys->hall_light_motion_deadline = now + LIGHT_HOLD_MS;
+    if (sys->hall_light_on == 0U)
     {
-      System_SetLight(sys, 1U, LIGHT_SRC_AUTO_PIR);
-      System_SendEvt("LIGHT,ON,MOTION_DARK");
+      System_SetHallLight(sys, 1U, LIGHT_SRC_AUTO_PIR);
+      System_SendEvt("HALL_LIGHT,ON,MOTION_DARK");
     }
   }
-  else if (sys->light_on != 0U && sys->light_source == LIGHT_SRC_AUTO_PIR)
+  else if (sys->hall_light_on != 0U && sys->hall_light_source == LIGHT_SRC_AUTO_PIR)
   {
-    if (sys->motion == 0U && now > sys->light_motion_deadline)
+    if (sys->motion == 0U && now > sys->hall_light_motion_deadline)
     {
-      System_SetLight(sys, 0U, LIGHT_SRC_AUTO_PIR);
-      System_SendEvt("LIGHT,OFF,NO_MOTION");
+      System_SetHallLight(sys, 0U, LIGHT_SRC_AUTO_PIR);
+      System_SendEvt("HALL_LIGHT,OFF,NO_MOTION");
     }
   }
 }
@@ -824,15 +853,15 @@ void System_OnUartCmd(const char *cmd)
 
   if (strcmp(cmd, "LIGHT_ON") == 0)
   {
-    System_SetLight(&g_system, 1U, LIGHT_SRC_MQTT);
-    g_system.light_manual_until = HAL_GetTick() + LIGHT_MANUAL_OVERRIDE_MS;
+    System_SetRoomLight(&g_system, 1U, LIGHT_SRC_MQTT);
+    g_system.room_light_manual_until = HAL_GetTick() + ROOM_LIGHT_MANUAL_OVERRIDE_MS;
     System_SendAck(cmd, "OK", NULL);
     return;
   }
   if (strcmp(cmd, "LIGHT_OFF") == 0)
   {
-    System_SetLight(&g_system, 0U, LIGHT_SRC_MQTT);
-    g_system.light_manual_until = HAL_GetTick() + LIGHT_MANUAL_OVERRIDE_MS;
+    System_SetRoomLight(&g_system, 0U, LIGHT_SRC_MQTT);
+    g_system.room_light_manual_until = HAL_GetTick() + ROOM_LIGHT_MANUAL_OVERRIDE_MS;
     System_SendAck(cmd, "OK", NULL);
     return;
   }
@@ -953,7 +982,7 @@ void System_Loop(void)
     s_last_sensor_tick += SENSOR_PERIOD_MS;
     System_SensorRead(&g_system);
     System_ProcessClap(&g_system);
-    System_ProcessAutoLight(&g_system);
+    System_ProcessAutoHallLight(&g_system);
     System_UpdateHC595(&g_system);
     System_SendData();
   }

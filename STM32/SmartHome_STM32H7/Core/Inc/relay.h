@@ -4,8 +4,8 @@
   * @brief   Driver 2 kenh relay.
   *
   * Phan cung (theo CubeMX):
-  *   - PE4 (RELAY_1): dieu khien relay 1, output push-pull.
-  *   - PE5 (RELAY_2): dieu khien relay 2, output push-pull.
+ *   - PE4 (RELAY_1): den hanh lang (tu dong PIR + anh sang).
+ *   - PE5 (RELAY_2): den phong (vo tay / MQTT).
   *
   * Mac dinh coi module relay kich muc HIGH (IN = HIGH => relay dong).
   * Neu dung module kich muc LOW (pho bien voi module co opto),

@@ -15,6 +15,8 @@
 static uint8_t light_status = 0;   /* Trang thai gan nhat (giu khi doc loi) */
 static uint8_t light_level = LIGHT_LEVEL_DARK;
 
+uint16_t g_light_sensor_raw = 0U;
+
 void LightSensor_Init(void)
 {
   /* Hieu chuan offset + linearity: bat buoc tren STM32H7 sau moi lan cap dien.
@@ -58,6 +60,7 @@ HAL_StatusTypeDef LightSensor_ReadRaw(uint16_t *raw)
   if (status == HAL_OK)
   {
     *raw = (uint16_t)HAL_ADC_GetValue(&hadc1);
+    g_light_sensor_raw = *raw;
   }
 
   HAL_ADC_Stop(&hadc1);

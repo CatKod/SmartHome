@@ -29,9 +29,9 @@
 #define HUMI_VENT_CLOSE           78U
 #define DHT11_FAULT_THRESHOLD     10U
 
-/* Den (Relay 1) */
-#define LIGHT_HOLD_MS             3000U   /* User: PIR nhay -> 3 giay */
-#define LIGHT_MANUAL_OVERRIDE_MS  (10U * 60U * 1000U)
+/* Den hanh lang (Relay 1) + den phong (Relay 2) */
+#define LIGHT_HOLD_MS             3000U   /* Hall: PIR -> giu 3 giay */
+#define ROOM_LIGHT_MANUAL_OVERRIDE_MS  (10U * 60U * 1000U)
 
 /* Vỗ tay (Home Mode) */
 #define CLAP_REFRACTORY_MS        200U

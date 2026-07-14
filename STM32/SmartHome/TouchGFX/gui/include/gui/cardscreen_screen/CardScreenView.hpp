@@ -11,6 +11,10 @@ public:
     virtual ~CardScreenView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+
+    /* USER CODE BEGIN */
+    void navigateToHomeActive();
+    /* USER CODE END */
 protected:
 };
 

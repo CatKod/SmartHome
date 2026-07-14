@@ -7,13 +7,15 @@ class Model
 {
 public:
     Model();
-
     void bind(ModelListener* listener)
     {
         modelListener = listener;
     }
-
     void tick();
+
+    /* USER CODE BEGIN */
+    void sendHomeModeCmd(bool active);
+    /* USER CODE END */
 protected:
     ModelListener* modelListener;
 

@@ -23,3 +23,10 @@ void HomeActiveScreenPresenter::updateEnvironmentalData(float temp, int humi, in
     view.updateEnvDisplay(temp, humi, light);
 }
 /* USER CODE END */
+
+/* USER CODE BEGIN */
+void HomeActiveScreenPresenter::sendSecurityChangeCommand(bool active)
+{
+    model->sendHomeModeCmd(active); // Delegate to Model
+}
+/* USER CODE END */

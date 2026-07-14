@@ -27,6 +27,10 @@ public:
 
     virtual ~CardScreenPresenter() {}
 
+    /* USER CODE BEGIN */
+    virtual void onAuthorizationSuccess() override;
+    /* USER CODE END */
+
 private:
     CardScreenPresenter();
 

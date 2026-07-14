@@ -18,23 +18,23 @@ void HomeActiveScreenView::tearDownScreen()
 /* USER CODE BEGIN */
 void HomeActiveScreenView::activateSecurityMode()
 {
-    // Send a command to the F4 MCU to activate security mode
+    // Transmit command to H7 to toggle the physical security relay/lock
     presenter->sendSecurityChangeCommand(false);
 
-    // Navigate to the main screen without transition
-    application().gotoMainScreenNoTransition();
+    // Return to the Authentication screen to require re-login
+    application().gotoAuthScreenScreenNoTransition();
 }
 
 void HomeActiveScreenView::updateEnvDisplay(float temp, int humi, int light)
 {
-    // push the environmental data to the text areas
+    // Seamlessly update text wildcards while swiping between dashboard containers
     Unicode::snprintfFloat(txtTempBuffer, TXTTEMP_SIZE, "%.1f", temp);
     txtTemp.invalidate(); 
 
-    Unicode::snprintf(txtHumiBuffer, TXTHUMI_SIZE, "%03d", humi);
+    Unicode::snprintf(txtHumiBuffer, TXTHUMI_SIZE, "%d", humi);
     txtHumi.invalidate();
 
-    Unicode::snprintf(txtBrightBuffer, TXTBRIGHT_SIZE, "%03d", light);
+    Unicode::snprintf(txtBrightBuffer, TXTBRIGHT_SIZE, "%d", light);
     txtBright.invalidate();
 }
 /* USER CODE END */

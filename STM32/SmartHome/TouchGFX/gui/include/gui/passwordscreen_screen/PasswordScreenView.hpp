@@ -11,6 +11,11 @@ public:
     virtual ~PasswordScreenView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+
+    /* USER CODE BEGIN */
+    virtual void checkPassword() override;
+    void navigateToHomeActive();
+    /* USER CODE END */
 protected:
 };
 

@@ -16,3 +16,11 @@ void CardScreenPresenter::deactivate()
 {
 
 }
+
+/* USER CODE BEGIN */
+void CardScreenPresenter::onAuthorizationSuccess()
+{
+    // Notify the view to navigate to the HomeActive screen when auth succeeds from H7
+    view.navigateToHomeActive();
+}
+/* USER CODE END */

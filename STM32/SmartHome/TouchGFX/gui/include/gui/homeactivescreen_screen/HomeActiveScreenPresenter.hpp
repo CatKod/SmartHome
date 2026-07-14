@@ -28,6 +28,10 @@ public:
     virtual ~HomeActiveScreenPresenter() {}
 
     virtual void updateEnvironmentalData(float temp, int humi, int light) override;
+
+    /* USER CODE BEGIN */
+    void sendSecurityChangeCommand(bool active);
+    /* USER CODE END */
 private:
     HomeActiveScreenPresenter();
 

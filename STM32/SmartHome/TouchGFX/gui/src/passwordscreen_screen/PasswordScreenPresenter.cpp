@@ -16,3 +16,11 @@ void PasswordScreenPresenter::deactivate()
 {
 
 }
+
+/* USER CODE BEGIN */
+void PasswordScreenPresenter::onAuthorizationSuccess()
+{
+    // Notify the view to navigate to the HomeActive screen when auth succeeds from H7
+    view.navigateToHomeActive();
+}
+/* USER CODE END */

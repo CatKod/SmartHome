@@ -16,24 +16,22 @@ void MainScreenView::tearDownScreen()
 }
 
 /* USER CODE BEGIN */
-
 void MainScreenView::updateEnvDisplay(float temp, int humi, int light)
 {
-    // txtTemp
+    // Update environmental metrics on the locked screen
     Unicode::snprintfFloat(txtTempBuffer, TXTTEMP_SIZE, "%.1f", temp);
     txtTemp.invalidate();
 
-    // txtHumi
-    Unicode::snprintf(txtHumiBuffer, TXTHUMI_SIZE, "%03d", humi);
+    Unicode::snprintf(txtHumiBuffer, TXTHUMI_SIZE, "%d", humi);
     txtHumi.invalidate();
 
-    // txtBright
-    Unicode::snprintf(txtBrightBuffer, TXTBRIGHT_SIZE, "%03d", light);
+    Unicode::snprintf(txtBrightBuffer, TXTBRIGHT_SIZE, "%d", light);
     txtBright.invalidate();
 }
 
 void MainScreenView::navigateToHomeActive()
 {
-    application().gotoHomeActiveScreenNoTransition();
+    // Jump to dashboard bypassing the login process (e.g. valid external bypass)
+    application().gotoHomeActiveScreenScreenNoTransition();
 }
 /* USER CODE END */

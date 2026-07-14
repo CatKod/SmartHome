@@ -27,6 +27,7 @@ public:
 
     virtual ~HomeActiveScreenPresenter() {}
 
+    virtual void updateEnvironmentalData(float temp, int humi, int light) override;
 private:
     HomeActiveScreenPresenter();
 

@@ -45,14 +45,49 @@
 			<locationURI>PARENT-1-PROJECT_LOC/STM32F429XX_FLASH.ld</locationURI>
 		</link>
 		<link>
+			<name>Application/User/crc.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/crc.c</locationURI>
+		</link>
+		<link>
+			<name>Application/User/dma2d.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/dma2d.c</locationURI>
+		</link>
+		<link>
+			<name>Application/User/fmc.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/fmc.c</locationURI>
+		</link>
+		<link>
 			<name>Application/User/freertos.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/Core/Src/freertos.c</locationURI>
 		</link>
 		<link>
+			<name>Application/User/gpio.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/gpio.c</locationURI>
+		</link>
+		<link>
+			<name>Application/User/i2c.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/i2c.c</locationURI>
+		</link>
+		<link>
+			<name>Application/User/ltdc.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/ltdc.c</locationURI>
+		</link>
+		<link>
 			<name>Application/User/main.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/Core/Src/main.c</locationURI>
+		</link>
+		<link>
+			<name>Application/User/spi.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/spi.c</locationURI>
 		</link>
 		<link>
 			<name>Application/User/stm32f4xx_hal_msp.c</name>
@@ -68,6 +103,11 @@
 			<name>Application/User/stm32f4xx_it.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/Core/Src/stm32f4xx_it.c</locationURI>
+		</link>
+		<link>
+			<name>Application/User/usart.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Core/Src/usart.c</locationURI>
 		</link>
 		<link>
 			<name>Drivers/CMSIS/system_stm32f4xx.c</name>
@@ -213,6 +253,11 @@
 			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c</locationURI>
 		</link>
 		<link>
 			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_ll_fmc.c</name>

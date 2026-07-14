@@ -39,14 +39,11 @@
       <Text Id="__SingleUse_G3WF" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Welcome Home!</Translation>
       </Text>
-      <Text Id="__SingleUse_Q6S4" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">0</Translation>
-      </Text>
       <Text Id="__SingleUse_6Y3S" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">00</Translation>
       </Text>
       <Text Id="__SingleUse_CWFA" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">&lt;value&gt;.&lt;value&gt;°C</Translation>
+        <Translation Language="GB">&lt;value&gt;°C</Translation>
       </Text>
       <Text Id="__SingleUse_L6LD" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">000</Translation>
@@ -243,14 +240,11 @@
       <Text Id="__SingleUse_5VEP" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;%</Translation>
       </Text>
-      <Text Id="__SingleUse_DX7U" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">0</Translation>
-      </Text>
       <Text Id="__SingleUse_249U" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">00</Translation>
       </Text>
       <Text Id="__SingleUse_5PQS" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">&lt;value&gt;.&lt;value&gt;°C</Translation>
+        <Translation Language="GB">&lt;value&gt;°C</Translation>
       </Text>
       <Text Id="__SingleUse_9RX5" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">000</Translation>

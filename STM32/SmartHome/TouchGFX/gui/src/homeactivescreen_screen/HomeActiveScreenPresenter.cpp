@@ -16,3 +16,10 @@ void HomeActiveScreenPresenter::deactivate()
 {
 
 }
+
+/* USER CODE BEGIN */
+void HomeActiveScreenPresenter::updateEnvironmentalData(float temp, int humi, int light)
+{
+    view.updateEnvDisplay(temp, humi, light);
+}
+/* USER CODE END */

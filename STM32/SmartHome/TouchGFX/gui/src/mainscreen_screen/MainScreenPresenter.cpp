@@ -16,3 +16,15 @@ void MainScreenPresenter::deactivate()
 {
 
 }
+
+/* USER CODE BEGIN */
+void MainScreenPresenter::updateEnvironmentalData(float temp, int humi, int light)
+{
+    view.updateEnvDisplay(temp, humi, light);
+}
+
+void MainScreenPresenter::onAuthorizationSuccess()
+{
+    view.navigateToHomeActive();
+}
+/* USER CODE END */

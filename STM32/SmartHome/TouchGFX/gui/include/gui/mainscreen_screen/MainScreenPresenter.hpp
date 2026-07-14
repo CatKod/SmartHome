@@ -27,6 +27,11 @@ public:
 
     virtual ~MainScreenPresenter() {}
 
+    /* USER CODE BEGIN */
+    virtual void updateEnvironmentalData(float temp, int humi, int light) override;
+    virtual void onAuthorizationSuccess() override;
+    /* USER CODE END */
+
 private:
     MainScreenPresenter();
 

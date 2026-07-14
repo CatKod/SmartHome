@@ -33,6 +33,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "Components/ili9341/ili9341.h"
+#include "f4_uart_link.h" /* Include the global UART link header */
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -158,10 +159,18 @@ int main(void)
   /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
   /* USER CODE BEGIN 2 */
+  // Declare TouchGFX/FMC command structures
+  FMC_SDRAM_CommandTypeDef CommandStructure;
+  extern SDRAM_HandleTypeDef hsdram1; /* Hardware SDRAM handle defined in fmc.c */
+
+  /* Execute the initialization sequence to activate the external SDRAM chip */
+  BSP_SDRAM_Initialization_Sequence(&hsdram1, &CommandStructure);
+
+  /* Initialize custom UART link layer for H7 communication */
   extern void F4_UART_Link_Init(UART_HandleTypeDef *huart);
-  F4_UART_Link_Init(&huart1); /* Initialize UART link for F4 communication */
+  F4_UART_Link_Init(&huart1); 
   
-  /* Start receiving data via UART */
+  /* Start the asynchronous IT receive process for the first byte */
   HAL_UART_Receive_IT(&huart1, &f4_rx_byte, 1);
   /* USER CODE END 2 */
 

@@ -16,13 +16,11 @@ void HomeActiveScreenView::tearDownScreen()
 }
 
 /* USER CODE BEGIN */
-void HomeActiveScreenView::activateSecurityMode()
+void HomeActiveScreenView::updateTimeDisplay(int hour, int minute)
 {
-    // Transmit command to H7 to toggle the physical security relay/lock
-    presenter->sendSecurityChangeCommand(false);
-
-    // Return to the Authentication screen to require re-login
-    application().gotoAuthScreenScreenNoTransition();
+    Unicode::snprintf(this->txtTimeBuffer1, sizeof(this->txtTimeBuffer1) / sizeof(touchgfx::Unicode::UnicodeChar), "%02d", hour);
+    Unicode::snprintf(this->txtTimeBuffer2, sizeof(this->txtTimeBuffer2) / sizeof(touchgfx::Unicode::UnicodeChar), "%02d", minute);
+    this->txtTime.invalidate(); 
 }
 
 void HomeActiveScreenView::updateEnvDisplay(float temp, int humi, int light)
@@ -36,5 +34,14 @@ void HomeActiveScreenView::updateEnvDisplay(float temp, int humi, int light)
 
     Unicode::snprintf(txtBrightBuffer, TXTBRIGHT_SIZE, "%d", light);
     txtBright.invalidate();
+}
+
+void HomeActiveScreenView::activateSecurityMode()
+{
+    // Transmit command to H7 to toggle the physical security relay/lock
+    presenter->sendSecurityChangeCommand(false);
+
+    // Return to the Authentication screen to require re-login
+    application().gotoAuthScreenScreenNoTransition();
 }
 /* USER CODE END */

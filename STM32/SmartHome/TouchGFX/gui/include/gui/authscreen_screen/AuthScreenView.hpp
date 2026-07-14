@@ -11,6 +11,10 @@ public:
     virtual ~AuthScreenView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+
+    /* USER CODE BEGIN */
+    void updateTimeDisplay(int hour, int minute);
+    /* USER CODE END */
 protected:
 };
 

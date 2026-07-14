@@ -17,6 +17,7 @@ public:
 
     /* USER CODE BEGIN */
     virtual void updateEnvironmentalData(float temp, int humi, int light) {}
+    virtual void updateTime(int hour, int minute) {}
     virtual void onAuthorizationSuccess() {}
     virtual void onSecurityAlert(bool isDanger) {}
     /* USER CODE END */

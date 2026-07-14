@@ -13,6 +13,7 @@ public:
     virtual void tearDownScreen();
 
     /* USER CODE BEGIN */
+    void updateTimeDisplay(int hour, int minute);
     virtual void activateSecurityMode() override;
     void updateEnvDisplay(float temp, int humi, int light);
     /* USER CODE END */

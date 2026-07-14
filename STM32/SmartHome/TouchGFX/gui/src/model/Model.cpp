@@ -13,6 +13,8 @@ extern int f4_rx_humidity;
 extern int f4_rx_light;
 extern bool f4_rx_is_logged_in;
 extern bool f4_rx_warning_trigger;
+extern int f4_rx_hour;
+extern int f4_rx_minute;
 
 // Transmit command function from f4_uart_link.c
 extern void F4_UART_SendHomeMode(bool active);
@@ -32,6 +34,8 @@ void Model::tick()
     /* USER CODE BEGIN */
     bool loggedIn = false;
     bool isWarning = false;
+    int hour = 0;
+    int minute = 0;
 
 #ifndef SIMULATOR
     // Running on physical STM32 MCU: Fetch real-time data from UART
@@ -40,6 +44,8 @@ void Model::tick()
     currentLight = f4_rx_light;
     loggedIn = f4_rx_is_logged_in;
     isWarning = f4_rx_warning_trigger;
+    hour = f4_rx_hour;
+    minute = f4_rx_minute;
 #else
     // Running on PC Simulator: Generate mock data for UI testing
     static int tickCount = 0;
@@ -51,14 +57,19 @@ void Model::tick()
     }
     loggedIn = false; // Manually toggle in debugger if testing navigation
     isWarning = false;
+    hour = 12;
+    minute = 0;
 #endif
 
     if (modelListener != 0)
     {
-        // 1. Dispatch real-time environmental data to the active view
+        // Dispatch real-time clock tick to the active screen presenter
+        modelListener->updateTime(hour, minute);
+
+        // Dispatch real-time environmental data to the active view
         modelListener->updateEnvironmentalData(currentTemp, currentHumi, currentLight);
 
-        // 2. Trigger authorization success event if login state flips to true
+        // Trigger authorization success event if login state flips to true
         if (loggedIn != lastLoginState)
         {
             lastLoginState = loggedIn;

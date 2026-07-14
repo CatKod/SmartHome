@@ -27,6 +27,10 @@ public:
 
     virtual ~AuthScreenPresenter() {}
 
+    /* USER CODE BEGIN */
+    virtual void updateTime(int hour, int minute) override;
+    /* USER CODE END */
+
 private:
     AuthScreenPresenter();
 

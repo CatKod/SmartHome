@@ -27,6 +27,9 @@ public:
 
     virtual ~SecurityScreenPresenter() {}
 
+    /* USER CODE BEGIN */
+    virtual void updateTime(int hour, int minute) override;
+    /* USER CODE END */ 
 private:
     SecurityScreenPresenter();
 

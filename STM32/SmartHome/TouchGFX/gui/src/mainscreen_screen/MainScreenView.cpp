@@ -16,6 +16,15 @@ void MainScreenView::tearDownScreen()
 }
 
 /* USER CODE BEGIN */
+void MainScreenView::updateTimeDisplay(int hour, int minute)
+{
+    // Use sizeof to securely get buffer size if macro identifiers are not cached yet
+    Unicode::snprintf(txtTimeBuffer1, sizeof(txtTimeBuffer1) / sizeof(touchgfx::Unicode::UnicodeChar), "%02d", hour);
+    Unicode::snprintf(txtTimeBuffer2, sizeof(txtTimeBuffer2) / sizeof(touchgfx::Unicode::UnicodeChar), "%02d", minute);
+    
+    txtTime.invalidate();
+}
+
 void MainScreenView::updateEnvDisplay(float temp, int humi, int light)
 {
     // Update environmental metrics on the locked screen

@@ -13,6 +13,7 @@ public:
     virtual void tearDownScreen();
 
     /* USER CODE BEGIN */
+    void updateTimeDisplay(int hour, int minute);
     virtual void checkPassword() override;
     void navigateToHomeActive();
     /* USER CODE END */

@@ -16,3 +16,10 @@ void SettingScreenPresenter::deactivate()
 {
 
 }
+
+/* USER CODE BEGIN */
+void SettingScreenPresenter::updateTime(int hour, int minute)
+{
+    view.updateTimeDisplay(hour, minute); // Forward time data to the view
+}
+/* USER CODE END */

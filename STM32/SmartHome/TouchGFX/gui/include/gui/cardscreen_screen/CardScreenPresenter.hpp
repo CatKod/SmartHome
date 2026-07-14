@@ -28,6 +28,7 @@ public:
     virtual ~CardScreenPresenter() {}
 
     /* USER CODE BEGIN */
+    virtual void updateTime(int hour, int minute) override;
     virtual void onAuthorizationSuccess() override;
     /* USER CODE END */
 

@@ -18,6 +18,11 @@ void PasswordScreenPresenter::deactivate()
 }
 
 /* USER CODE BEGIN */
+void PasswordScreenPresenter::updateTime(int hour, int minute)
+{
+    view.updateTimeDisplay(hour, minute); // Forward time data to the view
+}
+
 void PasswordScreenPresenter::onAuthorizationSuccess()
 {
     // Notify the view to navigate to the HomeActive screen when auth succeeds from H7

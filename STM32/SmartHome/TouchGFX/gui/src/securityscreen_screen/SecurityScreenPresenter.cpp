@@ -16,3 +16,10 @@ void SecurityScreenPresenter::deactivate()
 {
 
 }
+
+/* USER CODE BEGIN */
+void SecurityScreenPresenter::updateTime(int hour, int minute)
+{
+    view.updateTimeDisplay(hour, minute); // Forward time data to the view
+}
+/* USER CODE END */

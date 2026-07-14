@@ -18,6 +18,11 @@ void CardScreenPresenter::deactivate()
 }
 
 /* USER CODE BEGIN */
+void CardScreenPresenter::updateTime(int hour, int minute)
+{
+    view.updateTimeDisplay(hour, minute); // Forward time data to the view
+}
+
 void CardScreenPresenter::onAuthorizationSuccess()
 {
     // Notify the view to navigate to the HomeActive screen when auth succeeds from H7

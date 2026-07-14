@@ -27,4 +27,9 @@ void MainScreenPresenter::onAuthorizationSuccess()
 {
     view.navigateToHomeActive();
 }
+
+void MainScreenPresenter::updateTime(int hour, int minute)
+{
+    view.updateTimeDisplay(hour, minute); // Pass clock tick directly to view
+}
 /* USER CODE END */

@@ -18,6 +18,8 @@ int f4_rx_humidity = 0;
 int f4_rx_light = 0;
 bool f4_rx_is_logged_in = false;
 bool f4_rx_warning_trigger = false;
+int f4_rx_hour = 0;
+int f4_rx_minute = 0;
 
 void F4_UART_Link_Init(UART_HandleTypeDef *huart)
 {
@@ -34,6 +36,19 @@ void F4_UART_ParseData(char *payload)
 {
     if (payload == NULL) return;
 
+    // Parse the environmental data string from H7 including 24h clock data
+    if (strncmp(payload, "DATA,", 5) == 0)
+    {
+        char light_lvl[10], lock_st[10], win_st[10], mode_st[15], hall_st[5], room_st[5];
+        unsigned int mot, snd, heat, rain, alarm, risk;
+        
+        // Match the H7 package structure and extract variables accurately
+        sscanf(payload + 5, "%f,%d,%d,%[^,],%u,%u,%u,%u,%[^,],%[^,],%[^,],%[^,],%[^,],%u,%u,%d,%d",
+               &f4_rx_temperature, &f4_rx_humidity, &f4_rx_light,
+               light_lvl, &mot, &snd, &heat, &rain, lock_st, win_st, mode_st, hall_st, room_st,
+               &alarm, &risk, &f4_rx_hour, &f4_rx_minute);
+    }
+    
     // Parse the environmental data string from H7 (e.g., "ENV,28.5,65,450")
     if (strncmp(payload, "ENV,", 4) == 0)
     {

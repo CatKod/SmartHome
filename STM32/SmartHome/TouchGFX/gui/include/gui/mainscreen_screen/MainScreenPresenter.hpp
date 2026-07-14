@@ -30,6 +30,7 @@ public:
     /* USER CODE BEGIN */
     virtual void updateEnvironmentalData(float temp, int humi, int light) override;
     virtual void onAuthorizationSuccess() override;
+    virtual void updateTime(int hour, int minute) override;
     /* USER CODE END */
 
 private:

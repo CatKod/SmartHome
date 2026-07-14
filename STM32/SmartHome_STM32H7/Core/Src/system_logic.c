@@ -126,6 +126,8 @@ static void System_SendData(void)
   char payload[UART_FRAME_MAX];
   float temp = (float)g_system.temp_x10 / 10.0f;
   uint8_t light_pct = 100U - (uint8_t)((uint32_t)g_system.light_raw * 100U / 65535U);
+  uint8_t hour = 14;   // Replace with your real RTC hour variable (0-23)
+  uint8_t minute = 35; // Replace with your real RTC minute variable (0-59)
 
   snprintf(payload, sizeof(payload),
            "DATA,%.1f,%u,%u,%s,%u,%u,%u,%u,%s,%s,%s,%s,%s,%u,%u",
@@ -143,7 +145,9 @@ static void System_SendData(void)
            g_system.hall_light_on ? "ON" : "OFF",
            g_system.room_light_on ? "ON" : "OFF",
            (unsigned)g_system.alarm_active,
-           (unsigned)g_system.risk_score);
+           (unsigned)g_system.risk_score,
+           (unsigned)hour,
+           (unsigned)minute); 
   (void)UartLink_SendPayload(payload);
 }
 

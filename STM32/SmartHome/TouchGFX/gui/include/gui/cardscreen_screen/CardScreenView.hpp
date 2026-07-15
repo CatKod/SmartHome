@@ -15,6 +15,7 @@ public:
     /* USER CODE BEGIN */
     void updateTimeDisplay(int hour, int minute);
     void navigateToHomeActive();
+    void showAuthFailedMessage();
     /* USER CODE END */
 protected:
 };

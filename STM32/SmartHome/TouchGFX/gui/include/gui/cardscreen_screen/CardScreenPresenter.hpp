@@ -30,6 +30,7 @@ public:
     /* USER CODE BEGIN */
     virtual void updateTime(int hour, int minute) override;
     virtual void onAuthorizationSuccess() override;
+    virtual void onAuthorizationFailed();
     /* USER CODE END */
 
 private:

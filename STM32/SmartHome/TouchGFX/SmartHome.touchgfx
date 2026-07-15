@@ -2169,44 +2169,6 @@
         "Name": "CardScreen",
         "Components": [
           {
-            "Type": "FlexButton",
-            "Name": "virtualBtn",
-            "X": 190,
-            "Y": 30,
-            "Width": 50,
-            "Height": 50,
-            "Alpha": 0,
-            "ButtonTrigger": {
-              "Type": "ClickButtonTrigger"
-            },
-            "ButtonStyles": [
-              {
-                "Type": "BoxWithBorderButtonStyle",
-                "Width": 50,
-                "Height": 50,
-                "LockToFlexButtonSize": true,
-                "BorderSize": 5,
-                "ColorReleased": {
-                  "Green": 102,
-                  "Blue": 153
-                },
-                "ColorPressed": {
-                  "Green": 153,
-                  "Blue": 204
-                },
-                "ColorBorderReleased": {
-                  "Green": 51,
-                  "Blue": 102
-                },
-                "ColorBorderPressed": {
-                  "Red": 51,
-                  "Green": 102,
-                  "Blue": 153
-                }
-              }
-            ]
-          },
-          {
             "Type": "Box",
             "Name": "bgMain",
             "Width": 240,
@@ -2283,7 +2245,9 @@
             },
             "AutoSize": true,
             "Wildcard1": {
-              "TextId": "__SingleUse_347W"
+              "TextId": "__SingleUse_347W",
+              "UseBuffer": true,
+              "BufferSize": 20
             }
           },
           {
@@ -2359,62 +2323,12 @@
               "ScreenTransitionType": "ScreenTransitionNone",
               "ActionComponent": "AuthScreen"
             }
-          },
-          {
-            "InteractionName": "intCardToHome",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "virtualBtn"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "HomeActiveScreen"
-            }
           }
         ]
       },
       {
         "Name": "PasswordScreen",
         "Components": [
-          {
-            "Type": "FlexButton",
-            "Name": "virtualBtn",
-            "X": 190,
-            "Y": 30,
-            "Width": 50,
-            "Height": 50,
-            "Alpha": 0,
-            "ButtonTrigger": {
-              "Type": "ClickButtonTrigger"
-            },
-            "ButtonStyles": [
-              {
-                "Type": "BoxWithBorderButtonStyle",
-                "Width": 50,
-                "Height": 50,
-                "LockToFlexButtonSize": true,
-                "BorderSize": 5,
-                "ColorReleased": {
-                  "Green": 102,
-                  "Blue": 153
-                },
-                "ColorPressed": {
-                  "Green": 153,
-                  "Blue": 204
-                },
-                "ColorBorderReleased": {
-                  "Green": 51,
-                  "Blue": 102
-                },
-                "ColorBorderPressed": {
-                  "Red": 51,
-                  "Green": 102,
-                  "Blue": 153
-                }
-              }
-            ]
-          },
           {
             "Type": "Box",
             "Name": "bgMain",
@@ -2527,25 +2441,6 @@
             "AutoSize": true
           },
           {
-            "Type": "TextArea",
-            "Name": "txtNoti",
-            "X": 15,
-            "Y": 180,
-            "Width": 15,
-            "Height": 24,
-            "TextId": "__SingleUse_1EXX",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true,
-            "Wildcard1": {
-              "TextId": "__SingleUse_68SP"
-            }
-          },
-          {
             "Type": "BoxWithBorder",
             "Name": "boxPin4",
             "X": 180,
@@ -2566,6 +2461,27 @@
           },
           {
             "Type": "TextArea",
+            "Name": "txtNoti",
+            "X": 15,
+            "Y": 180,
+            "Width": 151,
+            "Height": 24,
+            "TextId": "__SingleUse_1EXX",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_68SP",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "TextArea",
             "Name": "txtPin4",
             "X": 196,
             "Y": 126,
@@ -2580,7 +2496,9 @@
             },
             "AutoSize": true,
             "Wildcard1": {
-              "TextId": "__SingleUse_D4O5"
+              "TextId": "__SingleUse_D4O5",
+              "UseBuffer": true,
+              "BufferSize": 10
             }
           },
           {
@@ -2618,7 +2536,9 @@
             },
             "AutoSize": true,
             "Wildcard1": {
-              "TextId": "__SingleUse_QDGT"
+              "TextId": "__SingleUse_QDGT",
+              "UseBuffer": true,
+              "BufferSize": 10
             }
           },
           {
@@ -2656,7 +2576,9 @@
             },
             "AutoSize": true,
             "Wildcard1": {
-              "TextId": "__SingleUse_ZT2W"
+              "TextId": "__SingleUse_ZT2W",
+              "UseBuffer": true,
+              "BufferSize": 10
             }
           },
           {
@@ -2694,7 +2616,9 @@
             },
             "AutoSize": true,
             "Wildcard1": {
-              "TextId": "__SingleUse_W8KV"
+              "TextId": "__SingleUse_W8KV",
+              "UseBuffer": true,
+              "BufferSize": 10
             }
           },
           {
@@ -2771,18 +2695,6 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "checkPassword"
-            }
-          },
-          {
-            "InteractionName": "intPassToHome",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "virtualBtn"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "HomeActiveScreen"
             }
           }
         ]

@@ -28,4 +28,10 @@ void CardScreenPresenter::onAuthorizationSuccess()
     // Notify the view to navigate to the HomeActive screen when auth succeeds from H7
     view.navigateToHomeActive();
 }
+
+void CardScreenPresenter::onAuthorizationFailed()
+{
+    // Forward RFID failure event to update txtNoti
+    view.showAuthFailedMessage();
+}
 /* USER CODE END */

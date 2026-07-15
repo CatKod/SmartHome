@@ -24,7 +24,16 @@ void CardScreenView::updateTimeDisplay(int hour, int minute)
 
 void CardScreenView::navigateToHomeActive()
 {
-    // Execute screen transition ONLY when the presenter receives successful auth signal from H7
+    touchgfx::Unicode::strncpy(this->txtNotiBuffer, "Access Granted!", sizeof(this->txtNotiBuffer) / sizeof(touchgfx::Unicode::UnicodeChar));
+    this->txtNoti.invalidate();
+
+    // Execute screen transition securely via MVP framework
     application().gotoHomeActiveScreenScreenNoTransition();
+}
+
+void CardScreenView::showAuthFailedMessage()
+{
+    touchgfx::Unicode::strncpy(this->txtNotiBuffer, "Invalid Card!", sizeof(this->txtNotiBuffer) / sizeof(touchgfx::Unicode::UnicodeChar));
+    this->txtNoti.invalidate();
 }
 /* USER CODE END */

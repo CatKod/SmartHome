@@ -28,4 +28,10 @@ void PasswordScreenPresenter::onAuthorizationSuccess()
     // Notify the view to navigate to the HomeActive screen when auth succeeds from H7
     view.navigateToHomeActive();
 }
+
+void PasswordScreenPresenter::onAuthorizationFailed()
+{
+    // Forward PIN failure event to update txtNoti
+    view.showAuthFailedMessage();
+}
 /* USER CODE END */

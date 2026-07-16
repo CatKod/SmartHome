@@ -18,7 +18,7 @@
 #include "stepper_28byj.h"
 
 /* Dat 1 de test LED 74HC595 + stepper luc boot; dat 0 khi chay he thong binh thuong */
-#define BOOT_HW_TEST  0
+#define BOOT_HW_TEST  1
 
 void SystemClock_Config(void);
 static void MPU_Config(void);

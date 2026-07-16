@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Smart Room Dashboard</title>
-  
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <!-- CSS stylesheet -->
-  <link rel="stylesheet" href="style.css">
-  
+  <link rel="stylesheet" href="style.css?v=3">
+
   <!-- Paho MQTT WebSockets Client -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>
 </head>
+
 <body>
   <div class="app-container">
-    
+
     <!-- HEADER -->
     <header class="app-header">
       <div class="logo-area">
@@ -48,7 +52,7 @@
     </div>
 
     <main class="app-main">
-      
+
       <!-- CONFIG PANEL -->
       <section id="settings-panel" class="settings-panel hidden">
         <div class="panel-header">
@@ -155,13 +159,13 @@
 
       <!-- SENSORS AND CONTROLS SECTION -->
       <div class="main-dashboard-grid">
-        
+
         <!-- SENSORS PANEL -->
         <section class="dashboard-column flex-2">
           <h3 class="section-title"><i class="fa-solid fa-gauge-high"></i> THÔNG SỐ CẢM BIẾN</h3>
-          
+
           <div class="sensors-grid">
-            
+
             <!-- TEMP & HUMI CARD -->
             <div class="sensor-card card">
               <span class="card-tag">DHT11</span>
@@ -243,14 +247,31 @@
             </div>
 
           </div>
+
+          <!-- EVENT LOG TERMINAL -->
+          <section class="logs-section">
+            <div class="terminal-card card">
+              <div class="terminal-header">
+                <div class="terminal-title-group">
+                  <i class="fa-solid fa-terminal text-green"></i>
+                  <span>NHẬT KÝ SỰ KIỆN HỆ THỐNG</span>
+                </div>
+                <button id="clear-events-btn" class="text-btn icon-text-btn"><i class="fa-solid fa-trash-can"></i> Xóa nhật
+                  ký</button>
+              </div>
+              <div class="terminal-body" id="event-logs-terminal">
+                <div class="terminal-line text-dim">&gt; Hệ thống sẵn sàng. Đang chờ kết nối từ Broker...</div>
+              </div>
+            </div>
+          </section>
         </section>
 
         <!-- CONTROLS PANEL -->
         <section class="dashboard-column flex-1">
           <h3 class="section-title"><i class="fa-solid fa-sliders"></i> BẢNG ĐIỀU KHIỂN THIẾT BỊ</h3>
-          
+
           <div class="controls-grid">
-            
+
             <!-- LIGHT CONTROL -->
             <div class="control-card card">
               <div class="control-header">
@@ -273,8 +294,10 @@
                 </div>
               </div>
               <div class="btn-group">
-                <button id="window-open-btn" class="btn success-btn flex-1"><i class="fa-solid fa-arrow-up"></i> MỞ</button>
-                <button id="window-close-btn" class="btn danger-btn flex-1"><i class="fa-solid fa-arrow-down"></i> ĐÓNG</button>
+                <button id="window-open-btn" class="btn success-btn flex-1"><i class="fa-solid fa-arrow-up"></i>
+                  MỞ</button>
+                <button id="window-close-btn" class="btn danger-btn flex-1"><i class="fa-solid fa-arrow-down"></i>
+                  ĐÓNG</button>
               </div>
             </div>
 
@@ -314,22 +337,6 @@
         </section>
       </div>
 
-      <!-- EVENT LOG TERMINAL -->
-      <section class="logs-section">
-        <div class="terminal-card card">
-          <div class="terminal-header">
-            <div class="terminal-title-group">
-              <i class="fa-solid fa-terminal text-green"></i>
-              <span>NHẬT KÝ SỰ KIỆN HỆ THỐNG</span>
-            </div>
-            <button id="clear-events-btn" class="text-btn icon-text-btn"><i class="fa-solid fa-trash-can"></i> Xóa nhật ký</button>
-          </div>
-          <div class="terminal-body" id="event-logs-terminal">
-            <div class="terminal-line text-dim">&gt; Hệ thống sẵn sàng. Đang chờ kết nối từ Broker...</div>
-          </div>
-        </div>
-      </section>
-
     </main>
 
     <!-- FOOTER -->
@@ -342,4 +349,5 @@
   <!-- JavaScript logic -->
   <script src="app.js"></script>
 </body>
+
 </html>

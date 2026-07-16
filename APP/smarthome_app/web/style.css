@@ -32,7 +32,7 @@ body {
   font-family: 'Outfit', sans-serif;
   min-height: 100vh;
   line-height: 1.5;
-  background-image: 
+  background-image:
     radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.1) 0px, transparent 50%),
     radial-gradient(at 100% 100%, rgba(244, 63, 94, 0.08) 0px, transparent 50%);
   background-attachment: fixed;
@@ -126,8 +126,17 @@ body {
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 0.3; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.2); }
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 /* BUTTONS styling */
@@ -211,8 +220,13 @@ body {
   text-decoration: underline;
 }
 
-.w-100 { width: 100%; }
-.flex-1 { flex: 1; }
+.w-100 {
+  width: 100%;
+}
+
+.flex-1 {
+  flex: 1;
+}
 
 /* COMMAND BANNER */
 .cmd-banner {
@@ -251,8 +265,15 @@ body {
 }
 
 @keyframes slideDown {
-  from { transform: translateY(-10px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* CARDS glassmorphism */
@@ -367,13 +388,19 @@ body {
 .console-output {
   font-family: 'Fira Code', monospace;
   font-size: 11px;
-  color: #a3e635; /* Light green console text */
+  color: #a3e635;
+  /* Light green console text */
   white-space: pre-wrap;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* OVERVIEW SECTION & VIRTUAL LED PANEL */
@@ -562,6 +589,7 @@ body {
   from {
     box-shadow: 0 0 5px var(--accent-red);
   }
+
   to {
     box-shadow: 0 0 15px var(--accent-red), 0 0 25px var(--accent-red);
   }
@@ -579,8 +607,14 @@ body {
   .main-dashboard-grid {
     flex-direction: row;
   }
-  .flex-2 { flex: 2; }
-  .flex-1 { flex: 1; }
+
+  .flex-2 {
+    flex: 2;
+  }
+
+  .flex-1 {
+    flex: 1;
+  }
 }
 
 .dashboard-column {
@@ -678,13 +712,33 @@ body {
   filter: drop-shadow(0 0 10px currentColor);
 }
 
-.text-yellow { color: var(--accent-yellow); }
-.text-blue { color: var(--accent-blue); }
-.text-orange { color: var(--accent-orange); }
-.text-red { color: var(--accent-red); }
-.text-teal { color: var(--accent-teal); }
-.text-green { color: var(--accent-green); }
-.text-grey { color: var(--text-secondary); }
+.text-yellow {
+  color: var(--accent-yellow);
+}
+
+.text-blue {
+  color: var(--accent-blue);
+}
+
+.text-orange {
+  color: var(--accent-orange);
+}
+
+.text-red {
+  color: var(--accent-red);
+}
+
+.text-teal {
+  color: var(--accent-teal);
+}
+
+.text-green {
+  color: var(--accent-green);
+}
+
+.text-grey {
+  color: var(--text-secondary);
+}
 
 /* Weather Card specifics */
 .weather-display {
@@ -724,8 +778,13 @@ body {
 }
 
 @keyframes shake {
-  from { transform: translateY(-2px); }
-  to { transform: translateY(2px); }
+  from {
+    transform: translateY(-2px);
+  }
+
+  to {
+    transform: translateY(2px);
+  }
 }
 
 /* Device Heat Specifics */
@@ -736,8 +795,13 @@ body {
 }
 
 @keyframes card-alert-pulse {
-  from { box-shadow: 0 0 5px rgba(239, 68, 68, 0.2); }
-  to { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); }
+  from {
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.2);
+  }
+
+  to {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+  }
 }
 
 /* Security Alerts Dual box */
@@ -785,9 +849,19 @@ body {
 }
 
 @keyframes alarm-icon-shake {
-  0%, 100% { transform: rotate(0); }
-  25% { transform: rotate(-10deg); }
-  75% { transform: rotate(10deg); }
+
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(-10deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
 }
 
 /* CONTROLS DISPLAY */
@@ -916,7 +990,7 @@ body {
 }
 
 .terminal-body {
-  height: 160px;
+  height: 280px;
   background-color: rgba(0, 0, 0, 0.55);
   padding: 12px;
   overflow-y: auto;
@@ -934,9 +1008,17 @@ body {
   word-break: break-all;
 }
 
-.text-dim { color: var(--text-muted); }
-.text-green-console { color: #22c55e; }
-.text-red-console { color: #f87171; }
+.text-dim {
+  color: var(--text-muted);
+}
+
+.text-green-console {
+  color: #22c55e;
+}
+
+.text-red-console {
+  color: #f87171;
+}
 
 /* APP FOOTER */
 .app-footer {

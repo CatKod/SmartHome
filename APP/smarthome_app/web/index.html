@@ -1,46 +1,345 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="smarthome_app">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>smarthome_app</title>
-  <link rel="manifest" href="manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Room Dashboard</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Paho MQTT WebSockets Client -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>
 </head>
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="logo-area">
+        <i class="fa-solid fa-house-laptop logo-icon"></i>
+        <h1>SMART ROOM MONITORING</h1>
+      </div>
+      <div class="header-status">
+        <div id="mqtt-status-badge" class="status-badge disconnected">
+          <span class="status-dot"></span>
+          <span id="mqtt-status-text">MẤT KẾT NỐI BROKER</span>
+        </div>
+        <button id="toggle-settings-btn" class="icon-btn" title="Cài đặt kết nối">
+          <i class="fa-solid fa-cog"></i>
+        </button>
+        <button id="connect-btn" class="btn primary-btn">Kết nối</button>
+      </div>
+    </header>
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
-  <script src="flutter_bootstrap.js" async></script>
+    <!-- COMMAND FEEDBACK BANNER -->
+    <div id="cmd-feedback-banner" class="cmd-banner hidden">
+      <i class="fa-solid id-icon"></i>
+      <span id="cmd-feedback-text">Lệnh gửi thành công.</span>
+      <button id="close-banner-btn" class="close-btn">&times;</button>
+    </div>
+
+    <main class="app-main">
+      
+      <!-- CONFIG PANEL -->
+      <section id="settings-panel" class="settings-panel hidden">
+        <div class="panel-header">
+          <h3>CẤU HÌNH KẾT NỐI MQTT OVER WEBSOCKET</h3>
+          <button id="clear-debug-btn" class="text-btn">Xóa log debug</button>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="mqtt-host">MQTT Broker Host</label>
+            <input type="text" id="mqtt-host" value="mqtt.toolhub.app">
+          </div>
+          <div class="form-group">
+            <label for="mqtt-port">Cổng (WebSocket)</label>
+            <input type="number" id="mqtt-port" value="8084">
+          </div>
+          <div class="form-group">
+            <label for="mqtt-user">Tài khoản</label>
+            <input type="text" id="mqtt-user" value="vinhhk">
+          </div>
+          <div class="form-group">
+            <label for="mqtt-pass">Mật khẩu</label>
+            <input type="password" id="mqtt-pass" value="20235876">
+          </div>
+        </div>
+        <div class="settings-actions">
+          <div class="checkbox-group">
+            <input type="checkbox" id="mqtt-ssl" checked>
+            <label for="mqtt-ssl">Sử dụng SSL/TLS (WSS)</label>
+          </div>
+          <button id="save-connect-btn" class="btn success-btn">Lưu & Kết nối</button>
+        </div>
+        <div class="debug-console">
+          <div id="debug-logs" class="console-output">Chưa có nhật ký kết nối.</div>
+        </div>
+      </section>
+
+      <!-- SYSTEM STATUS SUMMARY & VIRTUAL LED PANEL -->
+      <section class="overview-section">
+        <div class="system-gate-card card">
+          <div class="gate-info">
+            <div class="status-indicator">
+              <span id="gateway-status-dot" class="indicator-dot offline"></span>
+              <span id="gateway-status-text">ESP32 Gateway: OFFLINE</span>
+            </div>
+            <h2 id="system-mode-display" class="mode-text text-green">CHẾ ĐỘ HOME</h2>
+          </div>
+          <div class="lock-indicator-card locked" id="door-lock-card">
+            <i id="door-lock-icon" class="fa-solid fa-lock"></i>
+            <span id="door-lock-text" class="lock-label">ĐÃ KHÓA</span>
+            <span class="sub-label">Khóa cửa (SG90)</span>
+          </div>
+        </div>
+
+        <!-- 8-BIT SHIFT REGISTER (74HC595) VIRTUAL PANEL -->
+        <div class="led-panel-card card">
+          <div class="card-header-small">
+            <i class="fa-solid fa-microchip"></i>
+            <span>BẢNG HIỂN THỊ ĐÈN LED (STM32H7 ↔ 74HC595)</span>
+          </div>
+          <div class="led-grid">
+            <div class="led-item" id="led-0">
+              <div class="led-bulb led-green active"></div>
+              <span class="led-name">System Online</span>
+              <span class="led-bit">Q0 (Bit 0)</span>
+            </div>
+            <div class="led-item" id="led-1">
+              <div class="led-bulb led-blue"></div>
+              <span class="led-name">Home Mode</span>
+              <span class="led-bit">Q1 (Bit 1)</span>
+            </div>
+            <div class="led-item" id="led-2">
+              <div class="led-bulb led-cyan"></div>
+              <span class="led-name">Security Mode</span>
+              <span class="led-bit">Q2 (Bit 2)</span>
+            </div>
+            <div class="led-item" id="led-3">
+              <div class="led-bulb led-red"></div>
+              <span class="led-name">Door Lock</span>
+              <span class="led-bit">Q3 (Bit 3)</span>
+            </div>
+            <div class="led-item" id="led-4">
+              <div class="led-bulb led-orange"></div>
+              <span class="led-name">Motion</span>
+              <span class="led-bit">Q4 (Bit 4)</span>
+            </div>
+            <div class="led-item" id="led-5">
+              <div class="led-bulb led-yellow"></div>
+              <span class="led-name">Sound</span>
+              <span class="led-bit">Q5 (Bit 5)</span>
+            </div>
+            <div class="led-item" id="led-6">
+              <div class="led-bulb led-blue"></div>
+              <span class="led-name">Rain Detected</span>
+              <span class="led-bit">Q6 (Bit 6)</span>
+            </div>
+            <div class="led-item" id="led-7">
+              <div class="led-bulb led-red-pulse"></div>
+              <span class="led-name">Alarm Status</span>
+              <span class="led-bit">Q7 (Bit 7)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SENSORS AND CONTROLS SECTION -->
+      <div class="main-dashboard-grid">
+        
+        <!-- SENSORS PANEL -->
+        <section class="dashboard-column flex-2">
+          <h3 class="section-title"><i class="fa-solid fa-gauge-high"></i> THÔNG SỐ CẢM BIẾN</h3>
+          
+          <div class="sensors-grid">
+            
+            <!-- TEMP & HUMI CARD -->
+            <div class="sensor-card card">
+              <span class="card-tag">DHT11</span>
+              <div class="sensor-title">Nhiệt độ & Độ ẩm</div>
+              <div class="sensor-values-row">
+                <div class="sensor-value-group">
+                  <span id="temp-val" class="sensor-value">0.0</span>
+                  <span class="sensor-unit">°C</span>
+                  <span class="sensor-desc">Nhiệt độ</span>
+                </div>
+                <div class="divider-vertical"></div>
+                <div class="sensor-value-group">
+                  <span id="humi-val" class="sensor-value text-blue">0</span>
+                  <span class="sensor-unit">%</span>
+                  <span class="sensor-desc">Độ ẩm</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- LIGHT LEVEL CARD -->
+            <div class="sensor-card card">
+              <span class="card-tag">Quang trở</span>
+              <div class="sensor-title">Cường độ ánh sáng</div>
+              <div class="sensor-values-row">
+                <div class="sensor-value-group">
+                  <span id="light-pct" class="sensor-value">0</span>
+                  <span class="sensor-unit">%</span>
+                  <span class="sensor-desc" id="light-state">DARK</span>
+                </div>
+                <div class="sensor-icon-big text-yellow">
+                  <i class="fa-solid fa-sun"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- WEATHER / RAIN CARD -->
+            <div class="sensor-card card">
+              <span class="card-tag">Cảm biến mưa</span>
+              <div class="sensor-title">Thời tiết ngoài trời</div>
+              <div class="weather-display" id="weather-card">
+                <i id="weather-icon" class="fa-solid fa-sun weather-icon text-orange"></i>
+                <div class="weather-text-group">
+                  <span id="weather-status-text" class="weather-status">Không mưa</span>
+                  <span class="sensor-desc">Trạng thái mưa</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- MOTION & SOUND SECURITY ALERTS -->
+            <div class="sensor-card card">
+              <span class="card-tag">PIR & Sound</span>
+              <div class="sensor-title">Giám sát An ninh</div>
+              <div class="dual-alerts-row">
+                <div class="alert-box" id="motion-alert-box">
+                  <i class="fa-solid fa-person-running alert-icon"></i>
+                  <span class="alert-label">Chuyển động</span>
+                  <span id="motion-status-text" class="alert-status text-green">Bình thường</span>
+                </div>
+                <div class="divider-vertical"></div>
+                <div class="alert-box" id="sound-alert-box">
+                  <i class="fa-solid fa-volume-high alert-icon"></i>
+                  <span class="alert-label">Âm thanh</span>
+                  <span id="sound-status-text" class="alert-status text-green">Yên tĩnh</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- DEVICE OVERHEAT CARD -->
+            <div class="sensor-card card">
+              <span class="card-tag">Thermistor</span>
+              <div class="sensor-title">Nhiệt độ cục bộ thiết bị</div>
+              <div class="weather-display" id="device-heat-card">
+                <i id="device-heat-icon" class="fa-solid fa-microchip weather-icon text-teal"></i>
+                <div class="weather-text-group">
+                  <span id="device-heat-status" class="weather-status text-teal">ỔN ĐỊNH</span>
+                  <span class="sensor-desc">Giám sát quá nhiệt</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- CONTROLS PANEL -->
+        <section class="dashboard-column flex-1">
+          <h3 class="section-title"><i class="fa-solid fa-sliders"></i> BẢNG ĐIỀU KHIỂN THIẾT BỊ</h3>
+          
+          <div class="controls-grid">
+            
+            <!-- LIGHT CONTROL -->
+            <div class="control-card card">
+              <div class="control-header">
+                <i class="fa-solid fa-lightbulb control-icon" id="lightbulb-status-icon"></i>
+                <div class="control-title-group">
+                  <span class="control-title">Đèn phòng ngủ (Relay 2)</span>
+                  <span id="room-light-status" class="control-subtitle">Đang tắt</span>
+                </div>
+              </div>
+              <button id="light-toggle-btn" class="btn primary-btn w-100">BẬT ĐÈN</button>
+            </div>
+
+            <!-- WINDOW CONTROL -->
+            <div class="control-card card">
+              <div class="control-header">
+                <i class="fa-solid fa-window-maximize control-icon" id="window-status-icon"></i>
+                <div class="control-title-group">
+                  <span class="control-title">Cửa sổ (Stepper motor)</span>
+                  <span id="window-status" class="control-subtitle">Trạng thái: ĐÓNG</span>
+                </div>
+              </div>
+              <div class="btn-group">
+                <button id="window-open-btn" class="btn success-btn flex-1"><i class="fa-solid fa-arrow-up"></i> MỞ</button>
+                <button id="window-close-btn" class="btn danger-btn flex-1"><i class="fa-solid fa-arrow-down"></i> ĐÓNG</button>
+              </div>
+            </div>
+
+            <!-- SECURITY MODE CONTROL -->
+            <div class="control-card card">
+              <div class="control-header">
+                <i class="fa-solid fa-shield-halved control-icon" id="security-status-icon"></i>
+                <div class="control-title-group">
+                  <span class="control-title">Chế độ an ninh</span>
+                  <span id="security-status" class="control-subtitle">Chưa kích hoạt</span>
+                </div>
+              </div>
+              <button id="security-toggle-btn" class="btn success-btn w-100">KÍCH HOẠT AN NINH</button>
+            </div>
+
+            <!-- ALARM SIREN SILENCER -->
+            <div class="control-card card">
+              <div class="control-header">
+                <i class="fa-solid fa-bell-slash control-icon text-red" id="alarm-status-icon"></i>
+                <div class="control-title-group">
+                  <span class="control-title">Còi báo động</span>
+                  <span id="alarm-status" class="control-subtitle">Tắt</span>
+                </div>
+              </div>
+              <button id="alarm-silence-btn" class="btn danger-btn w-100" disabled>TẮT CÒI BÁO ĐỘNG</button>
+            </div>
+
+            <!-- ADDITIONAL INFOS -->
+            <div class="info-card card">
+              <div class="info-row">
+                <span>Đèn hành lang (Tự động):</span>
+                <span id="hall-light-status" class="info-val text-grey">TẮT</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <!-- EVENT LOG TERMINAL -->
+      <section class="logs-section">
+        <div class="terminal-card card">
+          <div class="terminal-header">
+            <div class="terminal-title-group">
+              <i class="fa-solid fa-terminal text-green"></i>
+              <span>NHẬT KÝ SỰ KIỆN HỆ THỐNG</span>
+            </div>
+            <button id="clear-events-btn" class="text-btn icon-text-btn"><i class="fa-solid fa-trash-can"></i> Xóa nhật ký</button>
+          </div>
+          <div class="terminal-body" id="event-logs-terminal">
+            <div class="terminal-line text-dim">&gt; Hệ thống sẵn sàng. Đang chờ kết nối từ Broker...</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <p>Smart Room Monitoring and Security System &copy; 2026 - STM32H7 & ESP32-S3 IoT Project</p>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript logic -->
+  <script src="app.js"></script>
 </body>
 </html>

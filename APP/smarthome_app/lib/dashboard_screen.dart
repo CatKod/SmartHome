@@ -409,7 +409,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   Text(
                     'Sử dụng SSL/TLS (WSS)',
-                    style: GoogleFonts.outfit(color: Colors.white90, fontSize: 13),
+                    style: GoogleFonts.outfit(color: Colors.white.withOpacity(0.9), fontSize: 13),
                   ),
                 ],
               ),

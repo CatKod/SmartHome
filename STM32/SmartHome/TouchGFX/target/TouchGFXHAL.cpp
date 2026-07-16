@@ -47,6 +47,9 @@ void TouchGFXHAL::initialize()
 
     TouchGFXGeneratedHAL::initialize();
 
+    // Set the frame buffer address used by the TFT controller.
+    setTFTFrameBuffer((uint16_t*)0xD0000000);
+
     // Add animation storage
     setAnimationStorage((void*)animationStorage);
 }

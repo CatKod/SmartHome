@@ -75,6 +75,9 @@
 /* USER CODE BEGIN PV */
 uint8_t isRevD = 0; /* Applicable only for STM32F429I DISCOVERY REVD and above */
 uint8_t f4_rx_byte = 0U; /* Byte received from F4 via UART */
+
+// Variable used as a check flag to pinpoint exactly where the hardware freezes
+volatile uint8_t debug_step = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -155,23 +158,34 @@ int main(void)
   MX_LTDC_Init();
   MX_DMA2D_Init();
   MX_USART1_UART_Init();
+
+  /* USER CODE BEGIN SysInit_Graphics */
+  debug_step = 1; // Milestone 1: Reached after core peripherals init
+
+  /* Initialize external SDRAM for TouchGFX Frame Buffer */
+  FMC_SDRAM_CommandTypeDef CommandStructure;
+  BSP_SDRAM_Initialization_Sequence(&hsdram1, &CommandStructure);
+  debug_step = 2; // Milestone 2: External SDRAM successfully initialized
+
+  /* Force turn on the LCD controller chip select line to wake up ILI9341 */
+  ili9341_Init(); // Trigger original register configuration sequence via SPI5
+  debug_step = 3; // Milestone 3: LCD driver registers configured via SPI
+
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
+  /* USER CODE END SysInit_Graphics */
+
   MX_TouchGFX_Init();
   /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
+
   /* USER CODE BEGIN 2 */
-  // Declare TouchGFX/FMC command structures
-  FMC_SDRAM_CommandTypeDef CommandStructure;
-  extern SDRAM_HandleTypeDef hsdram1; /* Hardware SDRAM handle defined in fmc.c */
-
-  /* Execute the initialization sequence to activate the external SDRAM chip */
-  BSP_SDRAM_Initialization_Sequence(&hsdram1, &CommandStructure);
-
   /* Initialize custom UART link layer for H7 communication */
   extern void F4_UART_Link_Init(UART_HandleTypeDef *huart);
-  F4_UART_Link_Init(&huart1); 
-  
+  F4_UART_Link_Init(&huart1);
+
   /* Start the asynchronous IT receive process for the first byte */
   HAL_UART_Receive_IT(&huart1, &f4_rx_byte, 1);
+  debug_step = 4; // Milestone 4: UART interrupt active. Ready for FreeRTOS Kernel!
   /* USER CODE END 2 */
 
   /* Init scheduler */

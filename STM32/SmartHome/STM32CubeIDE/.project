@@ -45,6 +45,11 @@
 			<locationURI>PARENT-1-PROJECT_LOC/STM32F429XX_FLASH.ld</locationURI>
 		</link>
 		<link>
+			<name>Application/User/f4_uart_link.c</name>
+			<type>1</type>
+			<location>D:/SmartHome/Core/Src/f4_uart_link.c</location>
+		</link>
+		<link>
 			<name>Application/User/freertos.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/Core/Src/freertos.c</locationURI>
@@ -213,6 +218,11 @@
 			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.c</name>
+			<type>1</type>
+			<location>D:/SmartHome/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c</location>
 		</link>
 		<link>
 			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_ll_fmc.c</name>

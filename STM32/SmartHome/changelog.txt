@@ -1,3 +1,6 @@
+3.0.26
+- Updated to STM32CubeMX 6.18.0
+
 3.0.25
 - Updated to STM32CubeMX 6.17.0
 

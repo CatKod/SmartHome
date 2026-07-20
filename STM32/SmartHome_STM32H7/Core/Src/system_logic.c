@@ -100,7 +100,7 @@ static const char *LightLevelToStr(uint8_t level)
   }
 }
 
-static void System_SendEvt(const char *evt_body)
+static void System_SendEvt(const char *evt_body) /* gửi một sự kiện vừa xảy ra từ STM32H7 sang ESP32. */
 {
   char payload[UART_FRAME_MAX];
   snprintf(payload, sizeof(payload), "EVT,%s", evt_body);

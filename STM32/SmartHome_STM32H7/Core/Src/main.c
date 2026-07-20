@@ -71,6 +71,10 @@ int main(void)
   Boot_HwTest();
 #endif
 
+  /* Khởi động bộ ngắt nhận byte đầu tiên từ F4 truyền sang thông qua UART4 */
+  static uint8_t f4_to_h7_byte = 0U;
+  HAL_UART_Receive_IT(&huart4, &f4_to_h7_byte, 1);
+
   while (1)
   {
     System_Loop();

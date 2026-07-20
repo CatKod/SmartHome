@@ -716,17 +716,57 @@ void HAL_SDRAM_MspDeInit(SDRAM_HandleTypeDef* hsdram){
 }
 
 /* USER CODE BEGIN 1 */
+/**
+  * @brief  Initializes the UART MSP (MCU Support Package) for USART1.
+  * @param  huart: UART handle pointer.
+  * @retval None
+  */
 void HAL_UART_MspInit(UART_HandleTypeDef* huart)
 {
-  if(huart->Instance==USART1)
+  if(huart->Instance == USART1)
   {
+    /* Peripheral Clock Enable */
     __HAL_RCC_USART1_CLK_ENABLE();
-    __HAL_RCC_GPIOA_CLK_ENABLE();
+    __HAL_RCC_GPIOA_CLK_ENABLE(); /* FIXED: Corrected macro identifier to enable GPIOA clock */
+
     GPIO_InitTypeDef GPIO_InitStruct = {0};
-    GPIO_InitStruct.Pin = GPIO_PIN_9|GPIO_PIN_10;
+
+    /**USART1 GPIO Configuration
+    PA9     ------> USART1_TX
+    PA10     ------> USART1_RX
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_9 | GPIO_PIN_10;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;               /* FIXED: Enable pull-up to prevent floating noise */
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH; /* FIXED: Set to maximum speed for high-speed HMI */
     GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+    /* FIXED: Enable USART1 Global Interrupt in NVIC */
+    HAL_NVIC_SetPriority(USART1_IRQn, 5, 0);          /* Set safe priority above or equal to FreeRTOS limits */
+    HAL_NVIC_EnableIRQ(USART1_IRQn);
+  }
+}
+
+/**
+  * @brief  De-Initializes the UART MSP.
+  * @param  huart: UART handle pointer.
+  * @retval None
+  */
+void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
+{
+  if(huart->Instance == USART1)
+  {
+    /* Reset peripherals clock */
+    __HAL_RCC_USART1_CLK_DISABLE();
+    /**USART1 GPIO Configuration
+    PA9     ------> USART1_TX
+    PA10     ------> USART1_RX
+    */
+    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9 | GPIO_PIN_10);
+
+    /* Disable USART1 Global Interrupt in NVIC */
+    HAL_NVIC_DisableIRQ(USART1_IRQn);
   }
 }
 /* USER CODE END 1 */

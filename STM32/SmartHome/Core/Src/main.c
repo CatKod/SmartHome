@@ -956,60 +956,48 @@ void LCD_IO_WriteReg(uint8_t Reg)
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 }
 
-/**
-  * @brief  Reads register value.
-  * @param  RegValue Address of the register to read
-  * @param  ReadSize Number of bytes to read
-  * @retval Content of the register value
-  */
 uint32_t LCD_IO_ReadData(uint16_t RegValue, uint8_t ReadSize)
 {
   uint32_t readvalue = 0;
-
-  /* Select: Chip Select low */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_RESET);
-
-  /* Reset WRX to send command */
   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
-
   SPI5_Write(RegValue);
-
   readvalue = SPI5_Read(ReadSize);
-
-  /* Set WRX to send data */
   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
-
-  /* Deselect: Chip Select high */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
-
   return readvalue;
 }
 
-/**
-  * @brief  Wait for loop in ms.
-  * @param  Delay in ms.
-  */
 void LCD_Delay(uint32_t Delay)
 {
   HAL_Delay(Delay);
 }
 
-/* USER CODE END 4 */
-
-/* USER CODE BEGIN Header_StartDefaultTask */
 /**
   * @brief  Function implementing the defaultTask thread.
+  *         Monitors and clears UART hardware errors continuously.
   * @param  argument: Not used
   * @retval None
   */
-/* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
   for(;;)
   {
-    /* Check if UART is idle and no interrupt has been triggered, interrupt */
+    /* Clear hardware Overrun error flags immediately for STM32F4 platforms */
+    if (__HAL_UART_GET_FLAG(&huart1, UART_FLAG_ORE) != RESET)
+    {
+      /* F4 architecture unlock sequence: Read Status Register followed by Data Register */
+      volatile uint32_t tmpreg = huart1.Instance->SR;
+      tmpreg = huart1.Instance->DR;
+      (void)tmpreg; /* Suppress unused variable warning */
+
+      /* Force re-activate the non-blocking receive interrupt loop */
+      HAL_UART_Receive_IT(&huart1, &f4_rx_byte, 1);
+    }
+
+    /* Check if UART peripheral is ready, enforce reactivating interrupt loop if idle */
     if (huart1.RxState == HAL_UART_STATE_READY)
     {
       HAL_UART_Receive_IT(&huart1, &f4_rx_byte, 1);

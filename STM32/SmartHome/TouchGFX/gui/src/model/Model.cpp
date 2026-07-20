@@ -55,7 +55,7 @@ void Model::tick()
        currentHumi = 60;
        currentLight = 85;
    }
-   loggedIn = false; // Manually toggle in debugger if testing navigation
+   loggedIn = false;
    isWarning = false;
    hour = 12;
    minute = 0;
@@ -93,7 +93,7 @@ void Model::tick()
 void Model::sendHomeModeCmd(bool active)
 {
 #ifndef SIMULATOR
-   // Route the command via UART strictly when deployed on the physical board
+   // Call the verified native link function directly to bypass destination type conflicts
    F4_UART_SendHomeMode(active);
 #endif
 }

@@ -17,8 +17,8 @@
 #define APP_CMD_RETRY           1
 
 /* Wi-Fi */
-#define APP_WIFI_SSID           "I2"
-#define APP_WIFI_PASSWORD       "abcd1232"
+#define APP_WIFI_SSID           "Hoang Hiep-2.4G-ext"
+#define APP_WIFI_PASSWORD       "07042005"
 #define APP_WIFI_MAX_RETRY      -1
 
 /* MQTT */

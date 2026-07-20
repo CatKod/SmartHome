@@ -20,28 +20,35 @@ void HomeActiveScreenView::updateTimeDisplay(int hour, int minute)
 {
     Unicode::snprintf(this->txtTimeBuffer1, sizeof(this->txtTimeBuffer1) / sizeof(touchgfx::Unicode::UnicodeChar), "%02d", hour);
     Unicode::snprintf(this->txtTimeBuffer2, sizeof(this->txtTimeBuffer2) / sizeof(touchgfx::Unicode::UnicodeChar), "%02d", minute);
+
+    // FIXED: Synchronize clock buffers into the dynamic clock text field
+    this->txtTime.setWildcard1(this->txtTimeBuffer1);
+    this->txtTime.setWildcard2(this->txtTimeBuffer2);
+
     this->txtTime.invalidate(); 
 }
 
 void HomeActiveScreenView::updateEnvDisplay(float temp, int humi, int light)
 {
-    // Seamlessly update text wildcards while swiping between dashboard containers
+    // Convert current parameters into safe array sequences
     Unicode::snprintfFloat(txtTempBuffer, TXTTEMP_SIZE, "%.1f", temp);
-    txtTemp.invalidate(); 
-
     Unicode::snprintf(txtHumiBuffer, TXTHUMI_SIZE, "%d", humi);
-    txtHumi.invalidate();
-
     Unicode::snprintf(txtBrightBuffer, TXTBRIGHT_SIZE, "%d", light);
+
+    // Bind mutated data arrays into active screen panel elements
+    txtTemp.setWildcard(txtTempBuffer);
+    txtHumi.setWildcard(txtHumiBuffer);
+    txtBright.setWildcard(txtBrightBuffer);
+
+    // Trigger visual memory redraw
+    txtTemp.invalidate(); 
+    txtHumi.invalidate();
     txtBright.invalidate();
 }
 
 void HomeActiveScreenView::activateSecurityMode()
 {
-    // Transmit command to H7 to toggle the physical security relay/lock
     presenter->sendSecurityChangeCommand(false);
-
-    // Return to the Authentication screen to require re-login
     application().gotoAuthScreenScreenNoTransition();
 }
 /* USER CODE END */

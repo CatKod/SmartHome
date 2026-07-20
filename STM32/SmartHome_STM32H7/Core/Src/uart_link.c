@@ -154,3 +154,28 @@ void UartLink_OnTxComplete(void)
   s_tx_busy = 0U;
   UartLink_TxKick();
 }
+
+/* USER CODE BEGIN 1 */
+/**
+  * @brief  Bổ sung luồng phát dữ liệu đồng bộ (Polling) từ H7 sang màn hình F4 qua UART4
+  * @param  payload: Chuỗi nội dung thô cần truyền (Ví dụ: "DATA,...")
+  */
+bool UartLink_SendToF4(const char *payload)
+{
+  char frame[UART_LINK_TX_BUF_LEN];
+  if (payload == NULL) return false;
+
+  // Đóng gói payload thành khung hoàn chỉnh có <STX> ở đầu và <ETX> ở đuôi qua uart_protocol.c
+  if (!UartProto_BuildFrame(frame, sizeof(frame), payload))
+  {
+    return false;
+  }
+
+  // Phát trực tiếp bằng chế độ Polling thời gian chờ 100ms chặn ngắn, không tranh chấp ngắt với ESP32
+  if (HAL_UART_Transmit(&huart4, (uint8_t *)frame, (uint16_t)strlen(frame), 100) == HAL_OK)
+  {
+    return true;
+  }
+  return false;
+}
+/* USER CODE END 1 */

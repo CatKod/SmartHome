@@ -1,6 +1,6 @@
 /**
  * @file system_logic.c
- * @brief Logic trung tam SmartHome STM32H7.
+ * @brief Central SmartHome control logic for STM32H7.
  */
 #include "system_logic.h"
 #include "system_config.h"
@@ -22,6 +22,11 @@
 #include "rfid_rc522.h"
 #include <stdio.h>
 #include <string.h>
+
+/* Import RTC handler configuration from main context if enabled */
+#ifdef HAL_RTC_MODULE_ENABLED
+extern RTC_HandleTypeDef hrtc;
+#endif
 
 SystemData_t g_system;
 
@@ -105,6 +110,7 @@ static void System_SendEvt(const char *evt_body)
   char payload[UART_FRAME_MAX];
   snprintf(payload, sizeof(payload), "EVT,%s", evt_body);
   (void)UartLink_SendPayload(payload);
+  (void)UartLink_SendToF4(payload);
 }
 
 static void System_SendAck(const char *cmd, const char *result, const char *reason)
@@ -126,11 +132,29 @@ static void System_SendData(void)
   char payload[UART_FRAME_MAX];
   float temp = (float)g_system.temp_x10 / 10.0f;
   uint8_t light_pct = 100U - (uint8_t)((uint32_t)g_system.light_raw * 100U / 65535U);
-  uint8_t hour = 14;   // Replace with your real RTC hour variable (0-23)
-  uint8_t minute = 35; // Replace with your real RTC minute variable (0-59)
 
+  uint8_t hour = 0;
+  uint8_t minute = 0;
+
+  /* Real-Time Clock processing synchronization block */
+#ifdef HAL_RTC_MODULE_ENABLED
+  RTC_TimeTypeDef sTime = {0};
+  RTC_DateTypeDef sDate = {0};
+  /* Read time and date from hardware peripherals to flush registers */
+  HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+  HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+  hour = sTime.Hours;
+  minute = sTime.Minutes;
+#else
+  /* Hardware fallback logic if RTC module is deactivated in .ioc file */
+  uint32_t total_minutes = HAL_GetTick() / 60000UL;
+  hour = (total_minutes / 60UL) % 24;
+  minute = total_minutes % 60;
+#endif
+
+  /* FIXED: Appended ",%%u,%%u" to match 17 exact formatting specifications */
   snprintf(payload, sizeof(payload),
-           "DATA,%.1f,%u,%u,%s,%u,%u,%u,%u,%s,%s,%s,%s,%s,%u,%u",
+           "DATA,%.1f,%u,%u,%s,%u,%u,%u,%u,%s,%s,%s,%s,%s,%u,%u,%u,%u",
            temp,
            (unsigned)g_system.humi,
            (unsigned)light_pct,
@@ -234,7 +258,7 @@ static void System_SetLock(SystemData_t *sys, LockState_t lock)
 static void System_UpdateHC595(SystemData_t *sys)
 {
   uint8_t leds = 0U;
-  leds |= (1U << 0); /* System online */
+  leds |= (1U << 0); /* System online status bit */
   if (sys->mode == MODE_HOME)
   {
     leds |= (1U << 1);
@@ -943,7 +967,7 @@ void System_Init(void)
   Servo_SetAngle(SERVO_ANGLE_LOCK_ENGAGED);
   HC595_Write(0x00U);
 
-  /* Homing mu: dong cua so ve vi tri 0 */
+  /* Homing state: Close the automated window to point 0 position */
   Stepper_RotateSteps(STEPPER_WINDOW_TRAVEL, STEPPER_CCW);
   g_system.stepper_pos = 0;
   g_system.window = WINDOW_CLOSED;

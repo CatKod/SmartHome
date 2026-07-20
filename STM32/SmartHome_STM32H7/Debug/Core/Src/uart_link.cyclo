@@ -8,3 +8,4 @@
 ../Core/Src/uart_link.c:137:6:UartLink_Poll	1
 ../Core/Src/uart_link.c:142:6:UartLink_OnRxCplt	1
 ../Core/Src/uart_link.c:148:6:UartLink_OnTxComplete	2
+../Core/Src/uart_link.c:163:6:UartLink_SendToF4	4

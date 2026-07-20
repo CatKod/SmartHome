@@ -736,7 +736,7 @@ static void System_SubmitPin(SystemData_t *sys) /* Hàm xử lý mã PIN sau khi
   }
 }
 
-static void System_HandleKey(SystemData_t *sys, char key)  * Hàm xử lý chức năng tương ứng với từng phím trên keypad */
+static void System_HandleKey(SystemData_t *sys, char key)  /* Hàm xử lý chức năng tương ứng với từng phím trên keypad */
 {
   if (key == '*')
   {

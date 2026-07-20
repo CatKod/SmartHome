@@ -107,7 +107,7 @@ static void System_SendEvt(const char *evt_body) /* gửi một sự kiện vừ
   (void)UartLink_SendPayload(payload);
 }
 
-static void System_SendAck(const char *cmd, const char *result, const char *reason)
+static void System_SendAck(const char *cmd, const char *result, const char *reason)  /* báo cho ESP32 biết một lệnh đó ntn */
 {
   char payload[UART_FRAME_MAX];
   if (reason != NULL && reason[0] != '\0')
@@ -121,7 +121,7 @@ static void System_SendAck(const char *cmd, const char *result, const char *reas
   (void)UartLink_SendPayload(payload);
 }
 
-static void System_SendData(void)
+static void System_SendData(void)   /* hàm gửi toàn bộ trạng thái hệ thống định kỳ */
 {
   char payload[UART_FRAME_MAX];
   float temp = (float)g_system.temp_x10 / 10.0f;
@@ -151,7 +151,7 @@ static void System_SendData(void)
   (void)UartLink_SendPayload(payload);
 }
 
-static void System_SetHallLight(SystemData_t *sys, uint8_t on, LightSource_t src)
+static void System_SetHallLight(SystemData_t *sys, uint8_t on, LightSource_t src)   /* hàm điều khiển đèn hành lang */
 {
   if (on != 0U)
   {

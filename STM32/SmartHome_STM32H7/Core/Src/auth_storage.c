@@ -252,3 +252,4 @@ void AuthStorage_ClearFailures(void) /* Xóa số lần sai và trạng thái lo
   s_lockout_level = 0U;
   (void)Auth_Save();
 }
+/*là module quản lý toàn bộ thông tin xác thực. Nó giữ một bản dữ liệu trong RAM, lưu PIN và UID xuống Flash để không mất khi tắt nguồn, dùng CRC để phát hiện dữ liệu hỏng, và khóa tạm thời khi người dùng nhập sai quá nhiều lần. */

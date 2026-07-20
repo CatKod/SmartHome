@@ -305,11 +305,11 @@ static void System_EnterAlarm(SystemData_t *sys)  /* Hàm đưa hệ thống và
 
 static void System_GrantAccess(SystemData_t *sys, const char *method)  /* Hàm xử lý khi người dùng xác thực thành công */
 {
-  strncpy(sys->last_access_method, method, sizeof(sys->last_access_method) - 1U);
-  AuthStorage_ClearFailures();
+  strncpy(sys->last_access_method, method, sizeof(sys->last_access_method) - 1U);  /* Lưu phương thức truy cập: PIN hoặc RFID */
+  AuthStorage_ClearFailures(); /* Xóa số lần xác thực sai và trạng thái lockout */
   sys->auth_fail_count = 0U;
 
-  if (sys->mode == MODE_ALARM || sys->mode == MODE_SECURITY || sys->mode == MODE_SUSPICIOUS)
+  if (sys->mode == MODE_ALARM || sys->mode == MODE_SECURITY || sys->mode == MODE_SUSPICIOUS) /* Nếu đang ở chế độ an ninh hoặc báo động thì về HOME và mở khóa */
   {
     System_EnterHome(sys);
     System_SetLock(sys, LOCK_RELEASED);
@@ -322,7 +322,7 @@ static void System_GrantAccess(SystemData_t *sys, const char *method)  /* Hàm x
   System_SetLock(sys, LOCK_RELEASED);
   char body[48];
   snprintf(body, sizeof(body), "ACCESS_GRANTED,%s,LOCK,RELEASED", method);
-  System_SendEvt(body);
+  System_SendEvt(body); /* Gửi sự kiện xác thực thành công sang ESP32 */
 }
 
 static void System_DenyAccess(SystemData_t *sys, const char *method)  /* Hàm xử lý khi người dùng xác thực thất bại */

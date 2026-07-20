@@ -521,9 +521,9 @@ static void System_ProcessAutoHallLight(SystemData_t *sys)  /* Hàm tự động
     return;
   }
 
-  uint8_t dark_enough = (sys->light_level == LIGHT_LEVEL_DARK || sys->light_level == LIGHT_LEVEL_DIM) ? 1U : 0U;
+  uint8_t dark_enough = (sys->light_level == LIGHT_LEVEL_DARK || sys->light_level == LIGHT_LEVEL_DIM) ? 1U : 0U; /* ktra ánh sáng đủ tối ko */
 
-  if (sys->motion != 0U && dark_enough != 0U)
+  if (sys->motion != 0U && dark_enough != 0U)  /* Nếu vừa có chuyển động vừa đủ tối thì bật đèn.*/
   {
     sys->hall_light_motion_deadline = now + LIGHT_HOLD_MS;
     if (sys->hall_light_on == 0U)

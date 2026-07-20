@@ -207,13 +207,13 @@ static void System_SetRoomLight(SystemData_t *sys, uint8_t on, LightSource_t src
   }
 }
 
-static void System_ForceAllLightsOff(SystemData_t *sys, LightSource_t src)
+static void System_ForceAllLightsOff(SystemData_t *sys, LightSource_t src) /* Hàm tắt toàn bộ đèn trong hệ thống */
 {
   System_SetHallLight(sys, 0U, src);
   System_SetRoomLight(sys, 0U, src);
 }
 
-static void System_SetLock(SystemData_t *sys, LockState_t lock)
+static void System_SetLock(SystemData_t *sys, LockState_t lock)  /* Hàm điều khiển trạng thái khóa cửa bằng servo */
 {
   if (lock == LOCK_RELEASED)
   {
@@ -231,7 +231,7 @@ static void System_SetLock(SystemData_t *sys, LockState_t lock)
   }
 }
 
-static void System_UpdateHC595(SystemData_t *sys)
+static void System_UpdateHC595(SystemData_t *sys)   /* Hàm cập nhật các LED trạng thái thông qua IC 74HC595 */
 {
   uint8_t leds = 0U;
   leds |= (1U << 0); /* System online */
@@ -279,7 +279,7 @@ static void System_UpdateHC595(SystemData_t *sys)
   }
 }
 
-static void System_EnterHome(SystemData_t *sys)
+static void System_EnterHome(SystemData_t *sys)  /* Hàm đưa hệ thống về chế độ HOME */
 {
   sys->mode = MODE_HOME;
   sys->alarm_active = 0U;
@@ -288,13 +288,13 @@ static void System_EnterHome(SystemData_t *sys)
   Control_SetBuzzerOff(sys);
 }
 
-static void Control_SetBuzzerOff(SystemData_t *sys)
+static void Control_SetBuzzerOff(SystemData_t *sys)   /* Hàm tắt còi buzzer và cập nhật trạng thái hệ thống */
 {
   Buzzer_Off();
   sys->buzzer = 0U;
 }
 
-static void System_EnterAlarm(SystemData_t *sys)
+static void System_EnterAlarm(SystemData_t *sys)  /* Hàm đưa hệ thống vào chế độ báo động ALARM */
 {
   sys->mode = MODE_ALARM;
   sys->alarm_active = 1U;
@@ -303,7 +303,7 @@ static void System_EnterAlarm(SystemData_t *sys)
   System_SendEvt("ALARM,ACTIVATED");
 }
 
-static void System_GrantAccess(SystemData_t *sys, const char *method)
+static void System_GrantAccess(SystemData_t *sys, const char *method)  /* Hàm xử lý khi người dùng xác thực thành công */
 {
   strncpy(sys->last_access_method, method, sizeof(sys->last_access_method) - 1U);
   AuthStorage_ClearFailures();
@@ -325,7 +325,7 @@ static void System_GrantAccess(SystemData_t *sys, const char *method)
   System_SendEvt(body);
 }
 
-static void System_DenyAccess(SystemData_t *sys, const char *method)
+static void System_DenyAccess(SystemData_t *sys, const char *method)  /* Hàm xử lý khi người dùng xác thực thất bại */
 {
   uint32_t now = HAL_GetTick();
   uint32_t rem = 0U;
@@ -352,14 +352,14 @@ static void System_DenyAccess(SystemData_t *sys, const char *method)
   }
 }
 
-static void System_StartSecurityExit(SystemData_t *sys)
+static void System_StartSecurityExit(SystemData_t *sys)  /* Hàm bắt đầu thời gian chờ trước khi kích hoạt chế độ SECURITY */
 {
   sys->mode = MODE_SECURITY_EXIT_DELAY;
   sys->mode_deadline = HAL_GetTick() + SECURITY_EXIT_DELAY_MS;
   System_SendEvt("SECURITY,EXIT_DELAY");
 }
 
-static void System_ActivateSecurity(SystemData_t *sys)
+static void System_ActivateSecurity(SystemData_t *sys) /* Hàm kích hoạt chế độ an ninh SECURITY */
 {
   sys->mode = MODE_SECURITY;
   sys->risk_score = 0U;
@@ -376,7 +376,7 @@ static void System_ActivateSecurity(SystemData_t *sys)
 
 static WindowState_t s_window_target = WINDOW_CLOSED;
 
-static void System_WindowOnMoveDone(SystemData_t *sys)
+static void System_WindowOnMoveDone(SystemData_t *sys) /* Hàm cập nhật trạng thái cửa sổ sau khi động cơ bước chạy xong */
 {
   if (s_window_target == WINDOW_OPEN)
   {
@@ -390,7 +390,7 @@ static void System_WindowOnMoveDone(SystemData_t *sys)
   }
 }
 
-static void System_WindowSetTarget(SystemData_t *sys, WindowState_t target)
+static void System_WindowSetTarget(SystemData_t *sys, WindowState_t target) /* Hàm đặt mục tiêu mở hoặc đóng cửa sổ */
 {
   s_window_target = target;
   if (target == WINDOW_OPEN && sys->window != WINDOW_OPEN)
@@ -407,7 +407,7 @@ static void System_WindowSetTarget(SystemData_t *sys, WindowState_t target)
   }
 }
 
-static void System_WindowArbitrate(SystemData_t *sys)
+static void System_WindowArbitrate(SystemData_t *sys) /* Hàm phân xử và quyết định trạng thái đóng/mở cửa sổ */
 {
   if (Stepper_IsBusy())
   {
@@ -465,7 +465,7 @@ static void System_WindowArbitrate(SystemData_t *sys)
   }
 }
 
-static void System_ProcessClap(SystemData_t *sys)
+static void System_ProcessClap(SystemData_t *sys) /* Hàm xử lý số lần vỗ tay để điều khiển đèn phòng */
 {
   if (sys->mode != MODE_HOME)
   {
@@ -505,7 +505,7 @@ static void System_ProcessClap(SystemData_t *sys)
   }
 }
 
-static void System_ProcessAutoHallLight(SystemData_t *sys)
+static void System_ProcessAutoHallLight(SystemData_t *sys)  /* Hàm tự động điều khiển đèn hành lang dựa trên PIR và mức ánh sáng */
 {
   uint32_t now = HAL_GetTick();
 
@@ -544,7 +544,7 @@ static void System_ProcessAutoHallLight(SystemData_t *sys)
 
 static uint8_t s_heat_warn_sent = 0U;
 
-static void System_ProcessThermistor(SystemData_t *sys)
+static void System_ProcessThermistor(SystemData_t *sys) /* Hàm xử lý cảnh báo quá nhiệt từ cảm biến thermistor */
 {
   if (sys->heat_alarm != 0U)
   {
@@ -569,7 +569,7 @@ static void System_ProcessThermistor(SystemData_t *sys)
   }
 }
 
-static void System_ProcessAlarmBuzzer(SystemData_t *sys)
+static void System_ProcessAlarmBuzzer(SystemData_t *sys)  /* Hàm điều khiển buzzer kêu ngắt quãng trong chế độ ALARM */
 {
   if (sys->mode != MODE_ALARM)
   {
@@ -593,8 +593,8 @@ static void System_ProcessAlarmBuzzer(SystemData_t *sys)
   }
 }
 
-static void System_ProcessRisk(SystemData_t *sys)
-{
+static void System_ProcessRisk(SystemData_t *sys)  /* Hàm tính điểm nguy cơ và kích hoạt báo động khi phát hiện xâm nhập */
+{ 
   uint32_t now = HAL_GetTick();
 
   if (sys->mode == MODE_SECURITY && sys->motion != 0U)
@@ -633,7 +633,7 @@ static void System_ProcessRisk(SystemData_t *sys)
   }
 }
 
-static void System_ProcessModes(SystemData_t *sys)
+static void System_ProcessModes(SystemData_t *sys)  /* Hàm xử lý chuyển chế độ và tự động khóa lại cửa */
 {
   uint32_t now = HAL_GetTick();
 
@@ -649,14 +649,14 @@ static void System_ProcessModes(SystemData_t *sys)
   }
 }
 
-static void System_ResetKeypadFlow(void)
+static void System_ResetKeypadFlow(void) /* Hàm đưa luồng nhập keypad về trạng thái ban đầu */
 {
   s_kp_flow = KP_IDLE;
   s_pin_len = 0U;
   memset(s_pin_buf, 0, sizeof(s_pin_buf));
 }
 
-static void System_SubmitPin(SystemData_t *sys)
+static void System_SubmitPin(SystemData_t *sys) /* Hàm xử lý mã PIN sau khi người dùng nhập đủ và nhấn xác nhận */
 {
   s_pin_buf[s_pin_len] = '\0';
 
@@ -736,7 +736,7 @@ static void System_SubmitPin(SystemData_t *sys)
   }
 }
 
-static void System_HandleKey(SystemData_t *sys, char key)
+static void System_HandleKey(SystemData_t *sys, char key)  * Hàm xử lý chức năng tương ứng với từng phím trên keypad */
 {
   if (key == '*')
   {
@@ -786,7 +786,7 @@ static void System_HandleKey(SystemData_t *sys, char key)
   }
 }
 
-static void System_SensorRead(SystemData_t *sys)
+static void System_SensorRead(SystemData_t *sys)  /* Hàm đọc và cập nhật dữ liệu từ toàn bộ cảm biến */
 {
   int16_t temp_x10;
   uint8_t humi;
@@ -815,8 +815,8 @@ static void System_SensorRead(SystemData_t *sys)
   sys->rain = RaindropSensor_GetStatus();
 }
 
-static void System_RFIDPoll(SystemData_t *sys)
-{
+static void System_RFIDPoll(SystemData_t *sys)  /* Hàm quét và xử lý thẻ RFID */
+{ 
   uint8_t uid[4];
   if (RC522_ReadCardUID(uid) != RC522_OK)
   {
@@ -848,7 +848,7 @@ static void System_RFIDPoll(SystemData_t *sys)
   }
 }
 
-void System_OnUartCmd(const char *cmd)
+void System_OnUartCmd(const char *cmd)  /* Hàm xử lý lệnh điều khiển nhận từ ESP32 qua UART */
 {
   if (cmd == NULL)
   {
@@ -915,7 +915,7 @@ void System_OnUartCmd(const char *cmd)
   System_SendAck(cmd, "REJECT", "UNKNOWN");
 }
 
-void System_Init(void)
+void System_Init(void)  /* Hàm khởi tạo toàn bộ hệ thống nhà thông minh */
 {
   memset(&g_system, 0, sizeof(g_system));
   g_system.mode = MODE_HOME;
@@ -957,7 +957,7 @@ void System_Init(void)
   System_SendEvt("SYSTEM,BOOT,HOME");
 }
 
-void System_Loop(void)
+void System_Loop(void)  /* Hàm vòng lặp chính, liên tục xử lý toàn bộ hoạt động của hệ thống */
 {
   char key = Keypad_GetKey();
   if (key != 0)

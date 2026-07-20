@@ -25,7 +25,7 @@ static AuthFlash_t s_cfg;
 static uint32_t s_lockout_until = 0U;
 static uint8_t s_lockout_level = 0U;
 
-static uint32_t Auth_Crc32(const uint8_t *data, size_t len)
+static uint32_t Auth_Crc32(const uint8_t *data, size_t len) /* Tính CRC32 để kiểm tra dữ liệu Flash có bị lỗi hay không */
 {
   uint32_t crc = 0xFFFFFFFFUL;
   for (size_t i = 0; i < len; i++)
@@ -46,7 +46,7 @@ static uint32_t Auth_Crc32(const uint8_t *data, size_t len)
   return ~crc;
 }
 
-static void Auth_Defaults(void)
+static void Auth_Defaults(void)  /* Tạo cấu hình xác thực mặc định với PIN 1234 và chưa có UID */
 {
   memset(&s_cfg, 0, sizeof(s_cfg));
   s_cfg.magic = AUTH_MAGIC;
@@ -55,7 +55,7 @@ static void Auth_Defaults(void)
   s_cfg.uid_count = 0U;
 }
 
-static bool Auth_Validate(const AuthFlash_t *cfg)
+static bool Auth_Validate(const AuthFlash_t *cfg)  /* Kiểm tra dữ liệu đọc từ Flash có hợp lệ hay không */
 {
   if (cfg->magic != AUTH_MAGIC || cfg->version != AUTH_VERSION)
   {
@@ -69,14 +69,14 @@ static bool Auth_Validate(const AuthFlash_t *cfg)
   return crc == cfg->crc32;
 }
 
-static void Auth_PrepareSave(AuthFlash_t *cfg)
+static void Auth_PrepareSave(AuthFlash_t *cfg) /* Cập nhật magic, version và CRC trước khi lưu Flash */
 {
   cfg->magic = AUTH_MAGIC;
   cfg->version = AUTH_VERSION;
   cfg->crc32 = Auth_Crc32((const uint8_t *)cfg, sizeof(AuthFlash_t) - sizeof(uint32_t));
 }
 
-static bool Auth_FlashEraseSector(void)
+static bool Auth_FlashEraseSector(void) /* Xóa sector Flash chứa dữ liệu xác thực */
 {
   FLASH_EraseInitTypeDef erase = {0};
   uint32_t sector_error = 0U;
@@ -97,7 +97,7 @@ static bool Auth_FlashEraseSector(void)
   return ok;
 }
 
-static bool Auth_FlashProgram(const AuthFlash_t *cfg)
+static bool Auth_FlashProgram(const AuthFlash_t *cfg)  /* Ghi cấu hình PIN và UID xuống Flash */
 {
   if (!Auth_FlashEraseSector())
   {
@@ -129,7 +129,7 @@ static bool Auth_FlashProgram(const AuthFlash_t *cfg)
   return ok;
 }
 
-static bool Auth_Save(void)
+static bool Auth_Save(void) /* Chuẩn bị rồi lưu cấu hình hiện tại xuống Flash */
 {
   AuthFlash_t temp = s_cfg;
   Auth_PrepareSave(&temp);
@@ -141,7 +141,7 @@ static bool Auth_Save(void)
   return true;
 }
 
-void AuthStorage_Init(void)
+void AuthStorage_Init(void)  /* Khởi tạo module xác thực bằng cách đọc dữ liệu từ Flash */
 {
   const AuthFlash_t *flash_cfg = (const AuthFlash_t *)AUTH_FLASH_ADDR;
   if (Auth_Validate(flash_cfg))
@@ -155,7 +155,7 @@ void AuthStorage_Init(void)
   }
 }
 
-bool AuthStorage_VerifyPin(const char *pin)
+bool AuthStorage_VerifyPin(const char *pin) /* Khởi tạo module xác thực bằng cách đọc dữ liệu từ Flash */
 {
   if (pin == NULL)
   {
@@ -164,7 +164,7 @@ bool AuthStorage_VerifyPin(const char *pin)
   return (strncmp(pin, s_cfg.pin, AUTH_PIN_LEN) == 0) && (strlen(pin) == AUTH_PIN_LEN);
 }
 
-bool AuthStorage_SetPin(const char *old_pin, const char *new_pin)
+bool AuthStorage_SetPin(const char *old_pin, const char *new_pin) /* Đổi PIN sau khi xác nhận đúng PIN cũ */
 {
   if (!AuthStorage_VerifyPin(old_pin) || new_pin == NULL || strlen(new_pin) != AUTH_PIN_LEN)
   {
@@ -175,7 +175,7 @@ bool AuthStorage_SetPin(const char *old_pin, const char *new_pin)
   return Auth_Save();
 }
 
-bool AuthStorage_IsUidAuthorized(const uint8_t uid[AUTH_UID_LEN])
+bool AuthStorage_IsUidAuthorized(const uint8_t uid[AUTH_UID_LEN]) /* Kiểm tra UID RFID có nằm trong danh sách được cấp quyền hay không */
 {
   if (uid == NULL)
   {
@@ -191,7 +191,7 @@ bool AuthStorage_IsUidAuthorized(const uint8_t uid[AUTH_UID_LEN])
   return false;
 }
 
-bool AuthStorage_AddUid(const uint8_t uid[AUTH_UID_LEN])
+bool AuthStorage_AddUid(const uint8_t uid[AUTH_UID_LEN])  /* Thêm một UID RFID mới vào danh sách và lưu xuống Flash */
 {
   if (uid == NULL || s_cfg.uid_count >= AUTH_MAX_UIDS)
   {
@@ -206,12 +206,12 @@ bool AuthStorage_AddUid(const uint8_t uid[AUTH_UID_LEN])
   return Auth_Save();
 }
 
-uint8_t AuthStorage_GetUidCount(void)
+uint8_t AuthStorage_GetUidCount(void)  /* Lấy số lượng UID RFID hiện đang được lưu */
 {
   return s_cfg.uid_count;
 }
 
-bool AuthStorage_IsLockedOut(uint32_t now_ms, uint32_t *remaining_ms)
+bool AuthStorage_IsLockedOut(uint32_t now_ms, uint32_t *remaining_ms) /* Kiểm tra hệ thống có đang bị khóa tạm thời do nhập sai nhiều lần không */
 {
   if (now_ms >= s_lockout_until)
   {
@@ -228,7 +228,7 @@ bool AuthStorage_IsLockedOut(uint32_t now_ms, uint32_t *remaining_ms)
   return true;
 }
 
-void AuthStorage_RegisterFailure(uint32_t now_ms)
+void AuthStorage_RegisterFailure(uint32_t now_ms) /* Ghi nhận một lần xác thực thất bại và kích hoạt lockout nếu đủ số lần */
 {
   s_cfg.fail_streak++;
   if (s_cfg.fail_streak >= AUTH_FAIL_LIMIT)
@@ -245,7 +245,7 @@ void AuthStorage_RegisterFailure(uint32_t now_ms)
   }
 }
 
-void AuthStorage_ClearFailures(void)
+void AuthStorage_ClearFailures(void) /* Xóa số lần sai và trạng thái lockout khi xác thực thành công */
 {
   s_cfg.fail_streak = 0U;
   s_lockout_until = 0U;
